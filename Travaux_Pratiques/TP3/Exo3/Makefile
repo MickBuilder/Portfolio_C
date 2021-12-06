@@ -7,7 +7,7 @@ RM = rm -f
 SRC = ./src/
 OBJ = ./obj/
 
-OFILES = $(OBJ)word_count.o
+OFILES = $(OBJ)conversion.o
 
 all: main.out
 
@@ -17,7 +17,7 @@ main.out: $(OFILES)
 $(OBJ):
 	mkdir $@
 
-$(OBJ)word_count.o: $(SRC)word_count.c $(OBJ)
+$(OBJ)conversion.o: $(SRC)conversion.c $(OBJ)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 run: all
