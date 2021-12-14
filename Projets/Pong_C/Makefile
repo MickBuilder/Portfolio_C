@@ -4,25 +4,24 @@ CFLAGS = -ansi -Wall -pedantic
 
 RM = rm -f
 
-SRC_DIR = ./src/
-SRC = $(wildcard $(SRC_DIR)*.c)
+SRC = ./src/
+OBJ = ./obj/
+INCLUDE = ./include/
 
-OBJ_DIR = ./obj/
-OBJ = $(SRC:.c=.o)
-
-OFILES = $(OBJ)*.o
+sources = $(wildcard $(SRC)*.c)
+objects = $(sources:.c=.o)
 
 MAIN = pong.out
 
 all: $(MAIN)
 
-$(MAIN): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OFILES)
+$(MAIN): $(objects)
+	$(CC) $(CFLAGS) -o $@ $(objects)
 
 $(OBJ_DIR):
 	mkdir $@
 
-$(OBJ)%.o: $(SRC)%.c $(OBJ_DIR)
+$(OBJ_DIR)%.o: %.c $(INCLUDE)/%.h $(OBJ_DIR)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 run:
