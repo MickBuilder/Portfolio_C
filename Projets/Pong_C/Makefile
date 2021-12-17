@@ -1,28 +1,26 @@
 ###### VARIABLES #######
 CC = gcc
-CFLAGS = -ansi -Wall -pedantic
-
+CFLAGS = -ansi -Wall -pedantic 
 RM = rm -f
 
-SRC_DIR = ./src/
-SRC = $(wildcard $(SRC_DIR)*.c)
+# Dossiers du projets
+SRC = src
+INCLUDE = src/include
+OBJ = obj
 
-OBJ_DIR = ./obj/
-OBJ = $(SRC:.c=.o)
-
-OFILES = $(OBJ)*.o
+OBJECTS = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(wildcard $(SRC)/*.c))
 
 MAIN = pong.out
 
 all: $(MAIN)
 
-$(MAIN): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OFILES)
+$(MAIN): $(OBJ) $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $(OBJECTS)
 
-$(OBJ_DIR):
+$(OBJ):
 	mkdir $@
 
-$(OBJ)%.o: $(SRC)%.c $(OBJ_DIR)
+obj/%.o: src/%.c $(INCLUDE)/%.h 
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 run:
