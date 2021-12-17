@@ -3,24 +3,24 @@ CC = gcc
 CFLAGS = -ansi -Wall -pedantic 
 RM = rm -f
 
-# Dossiers du projets
-SRC = src
-INCLUDE = src/include
-OBJ = obj
+SRC = ./src/
+OBJ = ./obj/
+INCLUDE = ./include/
 
-OBJECTS = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(wildcard $(SRC)/*.c))
+sources = $(wildcard $(SRC)*.c)
+objects = $(sources:.c=.o)
 
 MAIN = pong.out
 
 all: $(MAIN)
 
-$(MAIN): $(OBJ) $(OBJECTS)
-	$(CC) $(CFLAGS) -o $@ $(OBJECTS)
+$(MAIN): $(objects)
+	$(CC) $(CFLAGS) -o $@ $(objects)
 
 $(OBJ):
 	mkdir $@
 
-obj/%.o: src/%.c $(INCLUDE)/%.h 
+$(OBJ_DIR)%.o: %.c $(INCLUDE)/%.h $(OBJ_DIR)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 run:
