@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "include/stack.h"
+#include "stack.h"
 
 /* This module proposes a single global and static stack */
 static Stack stack;
