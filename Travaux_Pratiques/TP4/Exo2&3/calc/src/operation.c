@@ -2,7 +2,7 @@
 #include <string.h>
 #include <math.h>
 
-#include "operation.h"
+#include "include/operation.h"
 
 /* Returns an integer which code a user action :
    - 0 : quit the programm 

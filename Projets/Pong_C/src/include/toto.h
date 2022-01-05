@@ -1,6 +1,6 @@
-#if !defined(MACRO)
-#define MACRO
+#ifndef _TOTO_H_
+#define _TOTO_H_
 
+int Add(int a, int b);
 
-
-#endif // MACRO
+#endif /* _TOTO_H_ */

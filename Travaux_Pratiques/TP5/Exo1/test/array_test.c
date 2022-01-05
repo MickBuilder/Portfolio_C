@@ -1,0 +1,72 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include "../src/include/array.h"
+#include "test.h"
+
+void test_allocate_integer_array() {
+    int* tab = allocate_integer_array(5);
+    TEST_CHECK(tab != NULL);
+}
+
+void test_free_integer_array() {
+    /* Pas de maniere propre de prouver que le memoire a ete bien libere */
+}
+
+void test_array_size() {
+    int expected_size = 4;
+    int* tab = allocate_integer_array(5);
+    tab[0] = 1;
+    tab[1] = 2;
+    tab[2] = 3;
+    tab[3] = 4;
+    tab[4] = -1;
+    TEST_CHECK_(array_size(tab) == expected_size, "Produced : %d; Expected : %d ", array_size(tab), expected_size);
+
+    free_integer_array(tab);
+}
+
+void test_print_array() {
+    int* tab = allocate_integer_array(5);
+    tab[0] = 1;
+    tab[1] = 2;
+    tab[2] = 3;
+    tab[3] = 4;
+    tab[4] = -1;
+    print_array(tab);
+
+    free_integer_array(tab);
+}
+
+void test_are_arrays_equal() {
+    int* tab1 = allocate_integer_array(5);
+    int* tab2 = allocate_integer_array(5);
+
+    tab1[0] = 1;
+    tab1[1] = 2;
+    tab1[2] = 3;
+    tab1[3] = 4;
+    tab1[4] = -1;
+
+    tab2[0] = 1;
+    tab2[1] = 2;
+    tab2[2] = 3;
+    tab2[3] = 4;
+    tab2[4] = -1;
+
+    printf("Hello");
+
+    TEST_CHECK_(are_arrays_equal(tab1, tab2) == 1, "Produced : %d; Expected : %d ", are_arrays_equal(tab1, tab2), 1);
+
+    printf("Hello Again");
+    free_integer_array(tab1);
+    free_integer_array(tab2);
+}
+
+TEST_LIST = {
+    { "allocate_integer_array function ==> ", test_allocate_integer_array },
+    { "free_integer_array function ==> ", test_free_integer_array },
+    { "array_size function ==> ", test_array_size },
+
+    { "are_arrays_equal function ==> ", test_are_arrays_equal },
+    { NULL, NULL }
+};

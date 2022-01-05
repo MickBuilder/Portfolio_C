@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "interface.h"
+#include "include/interface.h"
 
 void create_windows(void){
   MLV_create_window("Desk Calculator", NULL, WIDTH_WINDOWS_PIX, HEIGHT_WINDOWS_PIX);

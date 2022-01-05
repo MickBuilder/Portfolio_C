@@ -2,9 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "stack.h"
-#include "interface.h"
-#include "operation.h"
+#include "include/stack.h"
+#include "include/interface.h"
+#include "include/operation.h"
 
 int main(int argc, char* argv[]){
   char str_action[256];
