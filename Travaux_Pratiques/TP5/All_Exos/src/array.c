@@ -23,6 +23,11 @@ void free_integer_array(int* tab){
     free(tab);
 }
 
+/**
+ * Calcul et retourne la taille d'un tableau
+ * @param array[] le tableau
+ * @return taille
+*/
 int array_size(int* array) {
     int i = 0;
     while (*(array+i) != -1){
@@ -31,6 +36,9 @@ int array_size(int* array) {
     return i;
 }
 
+/**
+ * Affiche les elements d'un tableau sur la sortie standard
+*/
 void print_array(int* array) {
     int i = 0;
     while (*(array+i) != -1){
@@ -40,6 +48,12 @@ void print_array(int* array) {
     printf("\n");
 }
 
+/**
+ * Vérifie si deux tableaux ont le meme contenu
+ * @param first[]
+ * @param second[] 
+ * @return 1 si ils ont le meme contenu, sinon
+*/
 int are_arrays_equal(int* first, int* second) {
     int i = 0;
     int first_length, second_length;
@@ -50,7 +64,14 @@ int are_arrays_equal(int* first, int* second) {
         return 0;
     }
     
-    while (*(first + i) != -1) {
+    /*while (*(first + i) != -1) {
+        if (*(first + i) != *(second + i)) {
+            return 0;
+        }
+        i++;
+    }*/
+
+    for(i = 0; *(first + i) != -1; i++) {
         if (*(first + i) != *(second + i)) {
             return 0;
         }
@@ -65,6 +86,7 @@ int* copy_array(int* array) {
     new_array = allocate_integer_array(array_size(array));
     while (*(array+i) != -1){
         *(new_array+i) = *(array+i);
+        printf("%d ", *(array+i));
         i++;
     }
     return new_array;

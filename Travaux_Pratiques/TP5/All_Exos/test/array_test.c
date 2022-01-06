@@ -53,11 +53,26 @@ void test_are_arrays_equal() {
     tab2[3] = 4;
     tab2[4] = -1;
 
-    printf("Hello");
+    TEST_CHECK_(are_arrays_equal(tab1, tab2) == 1, "Produced : %d; Expected : %d ", are_arrays_equal(tab1, tab2), 1);
+
+    free_integer_array(tab1);
+    free_integer_array(tab2);
+}
+
+void test_copy_array() {
+    int* tab1 = allocate_integer_array(5);
+    int* tab2 = NULL;
+
+    tab1[0] = 1;
+    tab1[1] = 2;
+    tab1[2] = 3;
+    tab1[3] = 4;
+    tab1[4] = -1;
+
+    tab2 = copy_array(tab1);
 
     TEST_CHECK_(are_arrays_equal(tab1, tab2) == 1, "Produced : %d; Expected : %d ", are_arrays_equal(tab1, tab2), 1);
 
-    printf("Hello Again");
     free_integer_array(tab1);
     free_integer_array(tab2);
 }
@@ -66,7 +81,7 @@ TEST_LIST = {
     { "allocate_integer_array function ==> ", test_allocate_integer_array },
     { "free_integer_array function ==> ", test_free_integer_array },
     { "array_size function ==> ", test_array_size },
-
     { "are_arrays_equal function ==> ", test_are_arrays_equal },
+    { "copy_array function ==> ", test_copy_array },
     { NULL, NULL }
 };
