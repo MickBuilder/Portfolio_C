@@ -86,9 +86,9 @@ int* copy_array(int* array) {
     new_array = allocate_integer_array(array_size(array));
     while (*(array+i) != -1){
         *(new_array+i) = *(array+i);
-        printf("%d ", *(array+i));
         i++;
     }
+    *(new_array+i) = -1;
     return new_array;
 }
 
@@ -104,6 +104,7 @@ int* fill_array() {
         scanf("%d", array+i);
         i++;
     }
+    *(array+i) = -1;
     return array;
 }
 
@@ -115,6 +116,7 @@ int* random_array(int size, int max_value) {
         *(array+i) = rand() % max_value;
         i++;
     }
+    *(array+i) = -1;
     return array;
 }
 
@@ -126,14 +128,19 @@ int* concatenate_arrays(int* first, int* second) {
     first_length = array_size(first);
     second_length = array_size(second);
     new_array = allocate_integer_array(first_length + second_length);
+
     while (*(first+i) != -1) {
         *(new_array+i) = *(first+i);
         i++;
     }
+
     while (*(second+j) != -1) {
         *(new_array+i+j) = *(second+j);
         j++;
     }
+
+    *(new_array+i) = -1;
+
     return new_array;
 }
 
