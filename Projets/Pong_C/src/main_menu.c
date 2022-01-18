@@ -1,4 +1,10 @@
+/**
+ * @author Mick Cool
+ * @file main_menu.c
+ * @date 14.01.2022
+*/
 #include <SDL.h>
+/*#include <SDL_ttf.h>*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -6,7 +12,7 @@
 #define WINDOW_TITLE "PONG GAME"
 #define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 480
-#define BALL_SIZE 10
+#define BALL_SIZE 100
 #define SPEED 120
 #define PADDLE_WIDTH 5
 #define PADDLE_HEIGHT 80
@@ -19,8 +25,8 @@
 #define BLUE {0, 0, 255, 100}
 
 typedef struct {
-    float x;
-    float y;
+    int x;
+    int y;
     float dx;
     float dy;
     int size;
@@ -54,7 +60,7 @@ int main(int argc, char *argv[])
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
 
-    SDL_Color black = BLACK;
+    SDL_Color black = WHITE;
     SDL_Color lineDarkBlue = {55, 55, 255, 10};
     /*SDL_Color lineDarkRed = {255, 55, 55, 80};*/
     SDL_Color lineWhite = {255, 255, 255, 150};
@@ -112,7 +118,7 @@ void InitSDL(SDL_Window **window, SDL_Renderer **renderer)
     }
 
     *window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                               WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+                              WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 
     if (*window == NULL) {
         fprintf(stderr, "Erreur SDL_CreateWindow : %s", SDL_GetError());
@@ -138,6 +144,7 @@ void Update(SDL_Window *window, SDL_Renderer *renderer, Ball *ball, Paddle *p1, 
     int isPlayer = 1;
 
     Change_Render_Color(window, renderer, colorblack);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_RenderClear(renderer);
 
     Change_Render_Color(window, renderer, colorwhite);

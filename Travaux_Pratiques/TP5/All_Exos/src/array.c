@@ -41,10 +41,18 @@ int array_size(int* array) {
 */
 void print_array(int* array) {
     int i = 0;
-    while (*(array+i) != -1){
-        printf("%d ", *(array+i));
+    while (array[i] != -1){
+        
+        if(array[i + 1] == -1) {
+            printf("%d", array[i]);
+        } else
+        {
+            printf("%d - ", array[i]);
+        }
+        
         i++;
     }
+    
     printf("\n");
 }
 
@@ -152,6 +160,7 @@ int* merge_sorted_arrays(int* first, int* second) {
     first_length = array_size(first);
     second_length = array_size(second);
     new_array = allocate_integer_array(first_length + second_length);
+    printf("Merge the two following ones :\n");
     while (*(first+i) != -1 && *(second+j) != -1) {
         if (*(first+i) < *(second+j)) {
             *(new_array+i) = *(first+i);
@@ -161,26 +170,35 @@ int* merge_sorted_arrays(int* first, int* second) {
             j++;
         }
     }
-    while (*(first+i) != -1) {
+    printf("Part 1 :");
+    print_array(first);
+    printf("Part 2 :");
+    print_array(second);
+    printf("Merge one :");
+    print_array(new_array);
+    /*while (*(first+i) != -1) {
         *(new_array+i) = *(first+i);
         i++;
     }
     while (*(second+j) != -1) {
         *(new_array+i+j) = *(second+j);
         j++;
-    }
+    }*/
     return new_array;
 }
 
+/* TODO: Fonction à revoir, je passe au TP 6*/
 void split_arrays(int* array, int** first, int** second) {
     int i = 0;
     int j = 0;
-    int array_length;
+    int array_length, half_size;
     array_length = array_size(array);
-    *first = allocate_integer_array(array_length/2);
-    *second = allocate_integer_array(array_length/2);
+    half_size = array_length / 2;
+    *first = allocate_integer_array(half_size);
+    *second = allocate_integer_array(half_size);
+    printf("Split array in two part :\n");
     while (*(array+i) != -1) {
-        if (i < array_length/2) {
+        if (i < half_size) {
             *(*first+i) = *(array+i);
         } else {
             *(*second+j) = *(array+i);
@@ -188,6 +206,12 @@ void split_arrays(int* array, int** first, int** second) {
         }
         i++;
     }
+    *(*first+i) = -1;
+    *(*second+j) = -1;
+    printf("Part 1 :");
+    print_array(*first);
+    printf("Part 2 :");
+    print_array(*second);
 }
 
 int* merge_sort(int* array) {

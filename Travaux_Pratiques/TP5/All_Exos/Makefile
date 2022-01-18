@@ -35,7 +35,7 @@ $(OBJ)array_test.o: $(TEST)array_test.c $(INC)array.h $(TEST)test.h $(OBJ)
 test: all
 	./test.out
 
-run: all
+run: 
 	./main.out
 
 clean:
