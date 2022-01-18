@@ -317,11 +317,9 @@ void Check_Collision(Ball *ball, Paddle *p1, Paddle *p2) {
     SDL_Rect p2Rect = {p2->x, p2->y, PADDLE_WIDTH, PADDLE_HEIGHT};
 
     if (SDL_HasIntersection(&ballRect, &p1Rect)) {
-        ball->dx = SDL_fabs(ball->dx);
-        printf("Collision with p1\n");
+        ball->dx = -SDL_fabs(ball->dx);
     }
     if (SDL_HasIntersection(&ballRect, &p2Rect)) {
-        ball->dx = -SDL_fabs(ball->dx);
-        printf("Collision with p2\n");
+        ball->dx = SDL_fabs(ball->dx);
     }
 }
