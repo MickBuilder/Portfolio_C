@@ -7,15 +7,22 @@
 /*#include <SDL_ttf.h>*/
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define WINDOW_TITLE "PONG GAME"
 #define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 480
 #define BALL_SIZE 100
 #define SPEED 120
+#define PADDLE_WIDTH 20
+#define PADDLE_HEIGHT 80
+#define PADDLE_MARGIN 10
+#define PADDLE_SPEED 200
+
 #define BLACK {0, 0, 0, 100}
 #define WHITE {255, 255, 255, 100}
-#define WHITE_CLAIR {250, 250, 250, 80}
+#define RED {255, 0, 0, 100}
+#define BLUE {0, 0, 255, 100}
 
 typedef struct {
     int x;
@@ -25,13 +32,28 @@ typedef struct {
     int size;
 } Ball;
 
+typedef struct Paddle {
+    float x;
+    float y;
+    int score;
+} Paddle;
+
 void InitSDL(SDL_Window **window, SDL_Renderer **renderer);
-void Update(SDL_Window *window, SDL_Renderer *renderer, Ball *ball, float elapsedTime);
-void Update_Ball(Ball *ball, float elapsedTime);
+void Update(SDL_Window *window, SDL_Renderer *renderer, Ball *ball, Paddle *p1, Paddle *p2, float elapsedTime, int *running);
 void Ouit_Properly(SDL_Window *window, SDL_Renderer *renderer);
 void Change_Render_Color(SDL_Window *window, SDL_Renderer *renderer, SDL_Color color);
-int SDL_RenderFillCircle(SDL_Renderer * renderer, int x, int y, int radius);
-Ball Create_Ball(int x, int y, float dx, float dy, int size);
+int CoinFlip();
+
+Ball Create_Ball(int x, int y, int dx, int dy, int size);
+void Update_Ball(Ball *ball, float elapsedTime, int *running);
+void Render_Ball(SDL_Window *window, SDL_Renderer *renderer, Ball *ball);
+
+Paddle Create_Paddle(int score, int x, int y);
+void Update_Paddle(Paddle *paddle, float elapsedTime, int *running, int isPlayer);
+void Render_Paddle(SDL_Window *window, SDL_Renderer *renderer, Paddle *paddle);
+
+void Render_Score(SDL_Window *window, SDL_Renderer *renderer, Paddle *p1, Paddle *p2);
+void Check_Collision(Ball *ball, Paddle *p1, Paddle *p2);
 
 int main(int argc, char *argv[])
 {
@@ -46,7 +68,9 @@ int main(int argc, char *argv[])
     SDL_bool quit = SDL_FALSE;
     int lastTime = 0;
     int currentTime = 0;
+    int running = 0;
     float elapsedTime = 0;
+
     Ball ball = Create_Ball(
         WINDOW_WIDTH/2 - BALL_SIZE/2, 
         WINDOW_HEIGHT/2 - BALL_SIZE/2, 
@@ -54,7 +78,12 @@ int main(int argc, char *argv[])
         BALL_SIZE
     );
 
+    Paddle paddle1 = Create_Paddle(0, PADDLE_MARGIN, WINDOW_HEIGHT/2 - PADDLE_HEIGHT/2);
+    Paddle paddle2 = Create_Paddle(0, WINDOW_WIDTH - PADDLE_WIDTH - PADDLE_MARGIN, WINDOW_HEIGHT/2 - PADDLE_HEIGHT/2);
+
     /*int i = 0;*/
+
+    srand(time(NULL));
 
     InitSDL(&window, &renderer);
 
@@ -69,11 +98,10 @@ int main(int argc, char *argv[])
 
         currentTime = SDL_GetTicks();
         elapsedTime = (currentTime - lastTime) / 1000.0f;
-        Update(window, renderer, &ball, elapsedTime);
+        Update(window, renderer, &ball, &paddle1, &paddle2, elapsedTime, &running);
         lastTime = currentTime;
 
     }
-        
 
     Ouit_Properly(window, renderer);
     return EXIT_SUCCESS;
@@ -107,50 +135,35 @@ void InitSDL(SDL_Window **window, SDL_Renderer **renderer)
     }
 }
 
-void Update(SDL_Window *window, SDL_Renderer *renderer, Ball *ball, float elapsedTime)
+void Update(SDL_Window *window, SDL_Renderer *renderer, Ball *ball, Paddle *p1, Paddle *p2, float elapsedTime, int *running)
 {
-    SDL_Rect ballRect = {ball->x, ball->y, ball->size, ball->size};
     SDL_Color colorblack = BLACK;
     SDL_Color colorwhite = WHITE;
-    SDL_Color clair_white = WHITE_CLAIR;
+    SDL_Color colorred = RED;
+    SDL_Color colorblue = BLUE;
+    int isPlayer = 1;
 
     Change_Render_Color(window, renderer, colorblack);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_RenderClear(renderer);
 
-    Update_Ball(ball, elapsedTime);
     Change_Render_Color(window, renderer, colorwhite);
-    /*SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);*/
-    /*SDL_RenderFillRect(renderer, &ballRect);*/
-    SDL_RenderFillCircle(renderer, ball->x, ball->y, ball->size);
-    /*SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);*/
-    /*SDL_RenderFillCircle(renderer, ball->x, ball->y, ball->size);*/
 
-    /*Change_Render_Color(window, renderer, clair_white);
-    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-    SDL_RenderFillCircle(renderer, ball->x + 2, ball->y - 1, ball->size);
-    SDL_RenderFillCircle(renderer, ball->x + 3, ball->y - 2, ball->size);
-    SDL_RenderFillCircle(renderer, ball->x + 4, ball->y - 3, ball->size);*/
+    Update_Ball(ball, elapsedTime, running);
+    Render_Ball(window, renderer, ball);
+
+    Check_Collision(ball, p1, p2);
+
+    Update_Paddle(p1, elapsedTime, running, !isPlayer);
+    Change_Render_Color(window, renderer, colorred);
+    Render_Paddle(window, renderer, p1);
+
+    Update_Paddle(p2, elapsedTime, running, isPlayer);
+    Change_Render_Color(window, renderer, colorblue);
+    Render_Paddle(window, renderer, p2);
+    
 
     SDL_RenderPresent(renderer);
-}
-
-void Update_Ball(Ball *ball, float elapsedTime)
-{
-    ball->x += ball->dx * elapsedTime;
-    ball->y += ball->dy * elapsedTime;
-    if (ball->x < 0) {
-        ball->dx = SDL_fabs(ball->dx);
-    }
-    if (ball->x > WINDOW_WIDTH - BALL_SIZE) {
-        ball->dx = -SDL_fabs(ball->dx);
-    }
-    if (ball->y < 0) {
-        ball->dy = SDL_fabs(ball->dy);
-    }
-    if (ball->y > WINDOW_HEIGHT - BALL_SIZE) {
-        ball->dy = -SDL_fabs(ball->dy);
-    }
 }
 
 void Ouit_Properly(SDL_Window *window, SDL_Renderer *renderer)
@@ -175,61 +188,140 @@ void Change_Render_Color(SDL_Window *window, SDL_Renderer *renderer, SDL_Color c
     }
 }
 
-Ball Create_Ball(int x, int y, float dx, float dy, int size)
+int CoinFlip() {
+    return rand() % 2;
+}
+
+Ball Create_Ball(int x, int y, int dx, int dy, int size)
 {
     Ball ball;
+    int flip_x = CoinFlip() ? 1 : -1;
+    int flip_y = CoinFlip() ? 1 : -1;
 
     ball.x = x;
     ball.y = y;
-    ball.dx = dx * -1;
-    ball.dy = dy;
+    ball.dx = dx * flip_x;
+    ball.dy = dy * flip_y;
     ball.size = size;
 
     return ball;
 }
 
-/* fonction prise en liogne*/
-int SDL_RenderFillCircle(SDL_Renderer * renderer, int x, int y, int radius)
+void Update_Ball(Ball *ball, float elapsedTime, int *running)
 {
-    int offsetx, offsety, d;
-    int status;
+    if (!*running) {
+        return;
+    }
+    
+    ball->x += ball->dx * elapsedTime;
+    ball->y += ball->dy * elapsedTime;
+    if (ball->x < 0) {
+        ball->dx = SDL_fabs(ball->dx);
+    }
+    if (ball->x > WINDOW_WIDTH - BALL_SIZE) {
+        ball->dx = -SDL_fabs(ball->dx);
+    }
+    if (ball->y < 0) {
+        ball->dy = SDL_fabs(ball->dy);
+    }
+    if (ball->y > WINDOW_HEIGHT - BALL_SIZE) {
+        ball->dy = -SDL_fabs(ball->dy);
+    }
+}
 
+void Render_Ball(SDL_Window *window, SDL_Renderer *renderer, Ball *ball)
+{
+    SDL_Rect ballRect = {ball->x, ball->y, ball->size, ball->size};
+    SDL_RenderFillRect(renderer, &ballRect);
+}
 
-    offsetx = 0;
-    offsety = radius;
-    d = radius -1;
-    status = 0;
+Paddle Create_Paddle(int score, int x, int y) {
+    Paddle paddle;
+    paddle.x = x;
+    paddle.y = y;
+    paddle.score = score;
+    return paddle;
+}
 
-    while (offsety >= offsetx) {
+void Update_Paddle(Paddle *paddle, float elapsedTime, int *running, int isPlayer){
+    const Uint8 *keystate = SDL_GetKeyboardState(NULL);
 
-        status += SDL_RenderDrawLine(renderer, x - offsety, y + offsetx,
-                                     x + offsety, y + offsetx);
-        status += SDL_RenderDrawLine(renderer, x - offsetx, y + offsety,
-                                     x + offsetx, y + offsety);
-        status += SDL_RenderDrawLine(renderer, x - offsetx, y - offsety,
-                                     x + offsetx, y - offsety);
-        status += SDL_RenderDrawLine(renderer, x - offsety, y - offsetx,
-                                     x + offsety, y - offsetx);
+    if (keystate[SDL_SCANCODE_SPACE]) {
+        *running = 1;
+        printf("Space pressed\n");
+    }
 
-        if (status < 0) {
-            status = -1;
-            break;
+    if (!isPlayer) {
+        if (keystate[SDL_SCANCODE_S]) {
+            paddle->y += PADDLE_SPEED * elapsedTime;
         }
-
-        if (d >= 2*offsetx) {
-            d -= 2*offsetx + 1;
-            offsetx +=1;
+        if (keystate[SDL_SCANCODE_W]) {
+            paddle->y -= PADDLE_SPEED * elapsedTime;
         }
-        else if (d < 2 * (radius - offsety)) {
-            d += 2 * offsety - 1;
-            offsety -= 1;
+    } else {
+        if (keystate[SDL_SCANCODE_UP]) {
+            paddle->y -= PADDLE_SPEED * elapsedTime;
         }
-        else {
-            d += 2 * (offsety - offsetx - 1);
-            offsety -= 1;
-            offsetx += 1;
+        if (keystate[SDL_SCANCODE_DOWN]) {
+            paddle->y += PADDLE_SPEED * elapsedTime;
         }
     }
 
-    return status;
+    /*if (keystate[SDL_SCANCODE_UP]) {
+        paddle->y -= PADDLE_SPEED * elapsedTime;
+        printf("UP\n");
+    }
+    if (keystate[SDL_SCANCODE_DOWN]) {
+        paddle->y += PADDLE_SPEED * elapsedTime;
+        printf("DOWN\n");
+    }*/
+    if (paddle->y < 0) {
+        paddle->y = 0;
+    }
+    if (paddle->y > WINDOW_HEIGHT - PADDLE_HEIGHT) {
+        paddle->y = WINDOW_HEIGHT - PADDLE_HEIGHT;
+    }
+}
+
+void Render_Paddle(SDL_Window *window, SDL_Renderer *renderer, Paddle *player)
+{
+    SDL_Rect paddleRect = {player->x, player->y, PADDLE_WIDTH, PADDLE_HEIGHT};
+    SDL_RenderFillRect(renderer, &paddleRect);
+}
+
+void Check_Collision(Ball *ball, Paddle *p1, Paddle *p2) {
+    if (ball->x < 0) {
+        if (ball->y > p2->y && ball->y < p2->y + PADDLE_HEIGHT) {
+            ball->dx = -SDL_fabs(ball->dx);
+        } else {
+            p1->score++;
+            ball->x = WINDOW_WIDTH / 2 - BALL_SIZE / 2;
+            ball->y = WINDOW_HEIGHT / 2 - BALL_SIZE / 2;
+            ball->dx = SPEED;
+            ball->dy = SPEED;
+        }
+    }
+    if (ball->x > WINDOW_WIDTH - BALL_SIZE) {
+        if (ball->y > p1->y && ball->y < p1->y + PADDLE_HEIGHT) {
+            ball->dx = SDL_fabs(ball->dx);
+        } else {
+            p2->score++;
+            ball->x = WINDOW_WIDTH / 2 - BALL_SIZE / 2;
+            ball->y = WINDOW_HEIGHT / 2 - BALL_SIZE / 2;
+            ball->dx = SPEED;
+            ball->dy = SPEED;
+        }
+    }
+    /*SDL_Rect ballRect = {ball->x, ball->y, ball->size, ball->size};
+    SDL_Rect p1Rect = {p1->x, p1->y, p1->x + PADDLE_WIDTH, PADDLE_HEIGHT};
+    SDL_Rect p2Rect = {p2->x, p2->y, PADDLE_WIDTH, PADDLE_HEIGHT};
+
+    if (SDL_HasIntersection(&ballRect, &p1Rect)) {
+        ball->dx = -SDL_fabs(ball->dx);
+        printf("Collision with p1\n");
+    }
+    if (SDL_HasIntersection(&ballRect, &p2Rect)) {
+        ball->dx = SDL_fabs(ball->dx);
+        printf("Collision with p2\n");
+    }*/
 }
