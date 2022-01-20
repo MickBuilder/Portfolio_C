@@ -2,16 +2,21 @@
 #define PONG_TRY_H
 
 typedef struct {
+    int x;
+    int y;
+    float dx;
+    float dy;
+    int size;
+} Ball;
+
+typedef struct Paddle {
     float x;
     float y;
-} actor;
+    int score;
+} Paddle;
 
-actor* init_actor(float x, float y);
+Ball Create_Ball(int x, int y, int dx, int dy, int size);
 
-void move_actor(actor* a, float x, float y);
-
-void destroy_actor(actor* a);
-
-void update_actor(actor* a);
+Paddle Create_Paddle(int score, int x, int y);
 
 #endif /* PONG_TRY_H */
