@@ -180,12 +180,12 @@ void Update_Paddle(Paddle *paddle, float elapsedTime, int *running, int isPlayer
     const Uint8 *keystate = SDL_GetKeyboardState(NULL);
     SDL_Event event;
 
-   /* if (keystate[SDL_SCANCODE_SPACE]) {
-        *running = !(*running);
+    if (keystate[SDL_SCANCODE_SPACE]) {
+        *running = 1;
         printf("Run : %d\n", *running);
-    }*/
+    }
 
-    while (SDL_PollEvent(&event)) {
+    /*while (SDL_PollEvent(&event)) {
         if (event.type == SDL_KEYDOWN) {
             if (event.key.keysym.sym == SDLK_SPACE)
             {
@@ -197,7 +197,7 @@ void Update_Paddle(Paddle *paddle, float elapsedTime, int *running, int isPlayer
                 printf("normalement quitter : %d\n", *running);
             }
         }
-    }
+    }*/
 
     if (!isPlayer) {
         if (keystate[SDL_SCANCODE_S]) {
