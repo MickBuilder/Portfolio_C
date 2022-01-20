@@ -12,9 +12,9 @@
 #define WINDOW_TITLE "PONG GAME"
 #define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 480
-#define BALL_SIZE 100
+#define BALL_SIZE 10
 #define SPEED 120
-#define PADDLE_WIDTH 20
+#define PADDLE_WIDTH 5
 #define PADDLE_HEIGHT 80
 #define PADDLE_MARGIN 10
 #define PADDLE_SPEED 200
@@ -71,15 +71,10 @@ int main(int argc, char *argv[])
     int running = 0;
     float elapsedTime = 0;
 
-    Ball ball = Create_Ball(
-        WINDOW_WIDTH/2 - BALL_SIZE/2, 
-        WINDOW_HEIGHT/2 - BALL_SIZE/2, 
-        SPEED, SPEED, 
-        BALL_SIZE
-    );
+    Ball ball = Create_Ball(WINDOW_WIDTH/2 - BALL_SIZE/2, WINDOW_HEIGHT/2 - BALL_SIZE/2, SPEED, SPEED, BALL_SIZE);
 
     Paddle paddle1 = Create_Paddle(0, PADDLE_MARGIN, WINDOW_HEIGHT/2 - PADDLE_HEIGHT/2);
-    Paddle paddle2 = Create_Paddle(0, WINDOW_WIDTH - PADDLE_WIDTH - PADDLE_MARGIN, WINDOW_HEIGHT/2 - PADDLE_HEIGHT/2);
+    Paddle paddle2 = Create_Paddle(0, WINDOW_WIDTH - PADDLE_MARGIN - PADDLE_WIDTH , WINDOW_HEIGHT/2 - PADDLE_HEIGHT/2);
 
     /*int i = 0;*/
 
@@ -152,8 +147,6 @@ void Update(SDL_Window *window, SDL_Renderer *renderer, Ball *ball, Paddle *p1, 
     Update_Ball(ball, elapsedTime, running);
     Render_Ball(window, renderer, ball);
 
-    Check_Collision(ball, p1, p2);
-
     Update_Paddle(p1, elapsedTime, running, !isPlayer);
     Change_Render_Color(window, renderer, colorred);
     Render_Paddle(window, renderer, p1);
@@ -162,6 +155,7 @@ void Update(SDL_Window *window, SDL_Renderer *renderer, Ball *ball, Paddle *p1, 
     Change_Render_Color(window, renderer, colorblue);
     Render_Paddle(window, renderer, p2);
     
+    Check_Collision(ball, p1, p2);
 
     SDL_RenderPresent(renderer);
 }
@@ -290,7 +284,7 @@ void Render_Paddle(SDL_Window *window, SDL_Renderer *renderer, Paddle *player)
 }
 
 void Check_Collision(Ball *ball, Paddle *p1, Paddle *p2) {
-    if (ball->x < 0) {
+    /*if (ball->x < 0) {
         if (ball->y > p2->y && ball->y < p2->y + PADDLE_HEIGHT) {
             ball->dx = -SDL_fabs(ball->dx);
         } else {
@@ -311,17 +305,27 @@ void Check_Collision(Ball *ball, Paddle *p1, Paddle *p2) {
             ball->dx = SPEED;
             ball->dy = SPEED;
         }
-    }
+    }*/
     /*SDL_Rect ballRect = {ball->x, ball->y, ball->size, ball->size};
-    SDL_Rect p1Rect = {p1->x, p1->y, p1->x + PADDLE_WIDTH, PADDLE_HEIGHT};
+    SDL_Rect p1Rect = {p1->x, p1->y, PADDLE_WIDTH, PADDLE_HEIGHT};
     SDL_Rect p2Rect = {p2->x, p2->y, PADDLE_WIDTH, PADDLE_HEIGHT};
 
-    if (SDL_HasIntersection(&ballRect, &p1Rect)) {
+    if (SDL_HasIntersection(&p1Rect, &ballRect)) {
         ball->dx = -SDL_fabs(ball->dx);
         printf("Collision with p1\n");
     }
-    if (SDL_HasIntersection(&ballRect, &p2Rect)) {
+    if (SDL_HasIntersection(&p2Rect, &ballRect)) {
         ball->dx = SDL_fabs(ball->dx);
         printf("Collision with p2\n");
     }*/
+
+    if((ball->x <= p1->x + PADDLE_WIDTH) && (ball->y <= p1->y + PADDLE_HEIGHT) && (ball->y >= p1->y)) {
+        ball->dx = SDL_fabs(ball->dx);
+        printf("Collision with p1\n");
+    }
+
+    if((ball->x + BALL_SIZE >= p2->x) && (ball->y <= p2->y + PADDLE_HEIGHT) && (ball->y >= p2->y)) {
+        ball->dx = -SDL_fabs(ball->dx);
+        printf("Collision with p2\n");
+    }
 }
