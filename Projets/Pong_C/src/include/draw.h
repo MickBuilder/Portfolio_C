@@ -28,6 +28,8 @@ void Change_Render_Color(SDL_Window *window, SDL_Renderer *renderer, SDL_Color c
 int CoinFlip();
 
 void Update_Ball(Ball *ball, float elapsedTime, int *running);
+int
+SDL_RenderFillCircle(SDL_Renderer * renderer, int x, int y, int radius);
 void Render_Ball(SDL_Window *window, SDL_Renderer *renderer, Ball *ball);
 
 void Update_Paddle(Paddle *paddle, float elapsedTime, int *running, int isPlayer);

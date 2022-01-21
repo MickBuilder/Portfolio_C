@@ -22,8 +22,9 @@ This respository contains my learning in C programming during the 1st year of en
 # Présentation
 
 Salut !  <img title="" src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" alt="Hello" width="50" data-align="inline">
-
-Je suis ....(on s'en branle)
+Bienvenu sur mon portfolio. 
+Je suis étudiant en 1er année du cursus ingénieur à l'ESIPE Marne-la-Vallée. 
+Je viens d'un DUT Informatique 
 
 # Introduction
 
@@ -52,7 +53,7 @@ Je suis ....(on s'en branle)
 
 #### TP2 :
 
-Le TP2 a servi de rappel sur comment coder basiquement en C. J’ai pu revoir certaines bases que j’avais complètement oublié comme bêtement les paramètres du main et l’utilisation de argc et argv grâce à l’exercice 2.
+ Le TP2 a servi de rappel sur comment coder basiquement en C. J’ai pu revoir certaines bases que j’avais complètement oublié comme bêtement les paramètres du main et l’utilisation de argc et argv grâce à l’exercice 2.
 
 L’exercice 3 m’a surtout permis de revoir la récursivité très gentiment, c’est quelque chose que je n’ai pas trop perdu car on avait l’habitude de faire énormément de récursif en DUT (python ou C).
 

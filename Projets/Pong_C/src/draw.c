@@ -155,6 +155,68 @@ void Update_Ball(Ball *ball, float elapsedTime, int *running)
     }
 }
 
+/*int
+SDL_RenderFillCircle(SDL_Renderer * renderer, int x, int y, int radius)
+{
+    int offsetx, offsety, d;
+    int status;
+
+    /*CHECK_RENDERER_MAGIC(renderer, -1);*
+
+    offsetx = 0;
+    offsety = radius;
+    d = radius -1;
+    status = 0;
+
+    while (offsety >= offsetx) {
+
+        status += SDL_RenderDrawLine(renderer, x - offsety, y + offsetx,
+                                     x + offsety, y + offsetx);
+        status += SDL_RenderDrawLine(renderer, x - offsetx, y + offsety,
+                                     x + offsetx, y + offsety);
+        status += SDL_RenderDrawLine(renderer, x - offsetx, y - offsety,
+                                     x + offsetx, y - offsety);
+        status += SDL_RenderDrawLine(renderer, x - offsety, y - offsetx,
+                                     x + offsety, y - offsetx);
+
+        if (status < 0) {
+            status = -1;
+            break;
+        }
+
+        if (d >= 2*offsetx) {
+            d -= 2*offsetx + 1;
+            offsetx +=1;
+        }
+        else if (d < 2 * (radius - offsety)) {
+            d += 2 * offsety - 1;
+            offsety -= 1;
+        }
+        else {
+            d += 2 * (offsety - offsetx - 1);
+            offsety -= 1;
+            offsetx += 1;
+        }
+    }
+
+    return status;
+}*/
+
+/* Remarque du prof : Le prf m'a aider à créer cette fonction */
+int SDL_RenderFillCircle(SDL_Renderer * renderer, int x, int y, int radius) 
+{
+    int d, status, h;
+    status = 0;
+    h = radius * 2;
+    for (d = 0; d < radius; d++)
+    {
+        status += SDL_RenderDrawLine(renderer, x + d, y - h/2, x + d, y + h/2);
+        status += SDL_RenderDrawLine(renderer, x - d - 1, y - h/2, x - d - 1, y + h/2);
+        h--;
+    }
+    return status;
+}
+
 /**
  * @brief Render the ball on the screen
  * 
@@ -164,8 +226,9 @@ void Update_Ball(Ball *ball, float elapsedTime, int *running)
  */
 void Render_Ball(SDL_Window *window, SDL_Renderer *renderer, Ball *ball)
 {
-    SDL_Rect ballRect = {ball->x, ball->y, ball->size, ball->size};
-    SDL_RenderFillRect(renderer, &ballRect);
+    /*SDL_Rect ballRect = {ball->x, ball->y, ball->size, ball->size};*/
+    int res = SDL_RenderFillCircle(renderer, ball->x, ball->y, ball->size);
+    /*SDL_RenderFillRect(renderer, &ballRect);*/
 }
 
 /**
