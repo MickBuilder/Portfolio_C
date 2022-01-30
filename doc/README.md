@@ -105,12 +105,14 @@ Finalement, j'ai créer un jeu qui fonctionne mais sans les fonctionnalités pr�
 - le son lorsque la balle rebondit
 - l'effet de trainée de la balle
 
+Mais je compte continuer à travailler sur ce projet.
+
 ###### Problèmes rencontrés
 
 <div style="text-align: justify">
 Ce projet a été un défi surtout pour la partie graphisme. Sacahnt qu'il n'y a pas de standard de librairie graphique en C, j'ai utilisé la librairie graphique SDL qui est très bas niveau et n'a pas beaucoup de fonctionnalité. J'ai fait en sorte qu'on puisse jouer au jeu juste avec la commande `make run` en étant sur windows ou linux. 
 Au début, j'ai eu beaucoup du mal faire fonctionner le graphisme du jeu, et à faire la liason des éxécutables de la SDL avec mes codes sources. J'ai pris environ une semaine pour résoudre ce problème et j'ai mieux commpris comment fonctionne le processus de liaison de tout programme, j'ai donc pris un peu d'avance sur les TPs du fil rouge accidentellement. 
-Ensuite, j'ai eu des problèmes au niveau de la logique du jeu. En effet, à la base, je voulais une balle ronde qui rebondit sur les raquette mais la SDL ne permettant pas de dessiner des cercles, j'ai dans un premier temps utiliser un algorithme de dessin de cercle à base des pixels. Mais avec cet algo, je n'avais pas exactement ce que je voulais comme cercle. J'ai donc crée ma propre fonction me permettant de dessiner le cercle grâce au professeur de TD, Mr Reiters (Merci monsieur :pray:) mais je n'ai pas eu le temps de le terminer. voici l'avancement actuelle de la fonction : 
+Ensuite, j'ai eu des problèmes au niveau de la logique du jeu. En effet, à la base, je voulais une balle ronde qui rebondit sur les raquette mais la SDL ne permettant pas de dessiner des cercles, j'ai dans un premier temps utiliser un algorithme de dessin de cercle à base des pixels. Mais avec cet algo, je n'avais pas exactement ce que je voulais comme cercle. J'ai donc crée ma propre fonction me permettant de dessiner le cercle grâce au professeur de TD, Mr Reiters (Merci monsieur :pray:) mais je n'ai pas eu le temps de le terminer. Voici l'avancement actuelle de la fonction : 
 </div>
 
 ```c
@@ -154,4 +156,4 @@ int SDL_RenderFillCircle(SDL_Renderer * renderer, int x, int y, int radius)
 
 ### Conclusion
 
-En conclusion, 
+En conclusion, ce semestre a été très enrichissant pour moi surtout au niveau de l'appronfondissement des notions dejà vues et de l'apprentissage de nouvalle notion telles que la liaison de programme, la fonctionnement d'une bibliothèque garphique. 
