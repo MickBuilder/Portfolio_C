@@ -1,13 +1,9 @@
-![logo](_media/ic.svg)
+![logo](_media/c.svg)
 
 # Portfolio <em>C</em>
 
-> Portfolio
-
-- Simple and lightweight
-- No statically built html files
-- Multiple themes
-- This respository contains my learning in C programming during the 1st year of engineer course at ESIPE MLV.
+> "Il est 5 heures 50 ... Savez-vous où votre pointeur de pile se trouve?"
+- Anonymous.
 
 [Lire le portfolio](#portfolio_c)
 
