@@ -1,36 +1,26 @@
 # Portfolio_C
 
-- [Portfolio_C](#portfolio_c)
-  - [Présentation](#présentation)
-  - [Introduction](#introduction)
-  - [Semestre 1 (Prog C1)](#semestre-1-prog-c1)
-    - [Objectifs de progression](#objectifs-de-progression)
-    - [Productions](#productions)
-      - [Travaux Pratiques](#travaux-pratiques)
-        - [TP2 :](#tp2-)
-        - [TP 3 :](#tp-3-)
-        - [TP 4 :](#tp-4-)
-        - [TP 5 :](#tp-5-)
-        - [TP 6 :](#tp-6-)
-      - [Projets](#projets)
-        - [Pong Game](#pong-game)
-    - [Récaputilatif des notions](#récaputilatif-des-notions)
-    - [Conclusion](#conclusion)
-
-This respository contains my learning in C programming during the 1st year of engineer course at ESIPE MLV.
+<div style="text-align: justify">
+  Salut !  <img title="" src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" alt="Hello" width="50" data-align="inline"> <br>
+  Bienvenu sur mon portfolio. Au cours de la lecture de ce portfolio, vous decouverez qui suis-je, les compétences acquises sur le langage C, les réalisations que j'ai pu faire ce semestre et les celles qui restent à acquérir.
+</div>
 
 ## Présentation
 
-Salut !  <img title="" src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" alt="Hello" width="50" data-align="inline">
-Bienvenu sur mon portfolio. 
-Je suis étudiant en 1er année du cursus ingénieur à l'ESIPE Marne-la-Vallée. 
-Je viens d'un DUT Informatique 
+<div style="text-align: justify">
+  Tout d'abord, je suis étudiant en 1er année de cursus ingénieur à l'ESIPE Marne-la-Vallée. 
+  Je viens d'un DUT Informatique. J'ai commencé à programmer en C la 1er fois en 1ère année de DUT Informatique et j'ai coder en l'année suivante aussi. Mais malgré, ces deux années de programmation en C, il me restait toujours des compétences à revoir en C telles que : les listes chainées, les opérations bits à bits, les piles, les files et surtout le coté algorithmie de la programmation.
+</div>
 
 ## Introduction
 
 ## Semestre 1 (Prog C1)
 
 ### Objectifs de progression
+
+<div style="text-align: justify">
+  Mon objectifs est de mieux comprendre les notions sur lesquelles je bloque en suivant les TPs du fil rouge mais aussi en faisant des projets utilisant toutes les notions des TPs du fil rouge. Ci-dessous se trouve les objectifs que j'aimerais atteindre pour chaque notion de ce langage.
+</div>
 
 | Notions          | Points total |
 | ---------------- | ------------ |
@@ -51,106 +41,117 @@ Je viens d'un DUT Informatique
 
 ##### TP2 :
 
- Le TP2 a servi de rappel sur comment coder basiquement en C. J’ai pu revoir certaines bases que j’avais complètement oublié comme bêtement les paramètres du main et l’utilisation de argc et argv grâce à l’exercice 2.
+Le TP2 a servi de rappel sur comment coder basiquement en C. J’ai pu revoir certaines bases pour confirmer les notions de bases que j'avais déjà acquises.
 
-L’exercice 3 m’a surtout permis de revoir la récursivité très gentiment, c’est quelque chose que je n’ai pas trop perdu car on avait l’habitude de faire énormément de récursif en DUT (python ou C).
+L’exercice 5 m'a permis de revoir le fonctionnement des fichiers en C.
 
-Pour l’exercice 5, j’ai évidemment utilisé le man pour revoir l’utilisation des différentes fonctions proposées dans le sujet pour pouvoir composer l’exercice sans trop de difficulté.
-
-| Projet | Pts | I/O | Type | Program | Module | Compil | Récursion | Tableaux | Pointeurs | Structures | Allocation | Fichier | Bit à bit | Fct Pointer | Biblio |
-| ------ | --- | --- | ---- | ------- | ------ | ------ | --------- | -------- | --------- | ---------- | ---------- | ------- | --------- | ----------- | ------ |
-| TP 2   | 6   | 1   | 1    | 1       |        | 1      | 1         |          |           |            |            | 1       |           |             |        |
-
-| Notions                | TP2 | TP3 | TP4 | TP5 | TP6 |
-| ---------------------- | --- | --- | --- | --- | --- |
-| I/O                    | 1   | 1   | 1   | 1   | 1   |
-| Type                   | 1   | 1   | 1   | 1   | 1   |
-| Programme              | 1   | 1   | 1   | 1   | 1   |
-| Module                 |     |     | 1   |     | 1   |
-| Compilation            | 1   | 1   | 1   | 1   | 1   |
-| Récursion              | 1   | 1   |     | 1   | 2   |
-| Tableaux               |     | 1   |     | 1   | 1   |
-| Pointeurs              |     |     |     | 1   | 1   |
-| Structures             |     |     |     |     |     |
-| Allocation             |     |     |     |     |     |
-| Fichier                | 1   |     |     |     | 1   |
-| Bit à bit              |     |     |     |     |     |
-| Pointeurs de fonctions |     |     |     |     |     |
-| Bibliothèque           |     |     | 1   |     |     |
-| **Pts Total**          | 6   | 6   | 6   | 7   | 10  |
+> NB : Vous trouverez toutes les notions abordés dans le TP2 sur le [récapitulatif des notions](#récaputilatif-des-notions)
 
 ##### TP 3 :
 
-Le TP3 m’a servis également à reprendre mes bases, ceci dit, je n’ai pas fait tout les exercices, en effet, l'exercice 5 ne m'intéressais pas à faire car c'est un exercice que j'avais vu et revue en DUT et les deux autres m'ont semblé trop compliqué à faire au moment ou j’ai fais le TP, je souhaitais alors voir si je ne pouvais pas revoir du cours, ou bien me lancer sur un petit projet.
+<div style="text-align: justify">
+  Le TP3 m’a permis également à revoir certaines bases, ceci dit, je n’ai pas terminés tous les exercices. En effet, à cause d'un défi que je me suis lancé, je n'ai pas eu le temps de revenir sur les exercices 2 et 3.
 
-L’exercice 1 n’était pas nécessairement compliqué et j’ai personnellement trouvé la version récursive bien plus simple.
+  Etant donnée, la facilité de l'exercice 1, je me suis permis de m'intéresser aux tests unitaire (TDD)
+  pour avoir quelque chose d'amusant. Ca été un sacré défi. Au début, c'était très difficile à saisir le concept mais au fur et à mesure de faire d'approfondir, j'ai mieux saisir le concept des tests.
+  Pour ce faire, j'ai utilisé un petite bibliothèque minimaliste, en effet il suffit juste d'inclure un fichier d'entêtes `.h` dans mon code source de test afin de pouvoir tester les fonctions de l'exercice.
 
-L’exercice 4 était un peu compliqué à mettre en place, je n’avais pas réussi sur le coup, et c’est en faisant le cours d'algorithmique sur la recherche dichotomique que je suis revenus le terminer. J’avais tenté de le faire avec juste un size et comme je maîtrisais mal les tableaux, j’avais des erreur assez stupide. A ce moment il était clair que j’avais un soucis avec les tableaux, déjà avec leurs initialisation puis avec leurs utilisations
+  Finalement, je n’ai pas pris le temps de revenir sur les exercices que je n'ai pas terminés, mais j'ai commencé à réfléchir à un projet à faire.
 
-Finalement, je n’ai pas pris le temps de revenir sur les exercices qui m'avaient posé problèmes, autre que le 4, mais vous le lirez par la suite que j’ai fais un peu plus pour ce C1.
+</div>
 
-Donc en somme sur ce TP je suis un peu tombé sur un os, donc il fallait que je me rattrape autre part.
+> NB : Vous trouverez toutes les notions abordés dans le TP2 sur le [récapitulatif des notions](#récaputilatif-des-notions)
 
 ##### TP 4 :
 
-Le TP3 m’a servis également à reprendre mes bases, ceci dit, je n’ai pas fait tout les exercices, en effet, l'exercice 5 ne m'intéressais pas à faire car c'est un exercice que j'avais vu et revue en DUT et les deux autres m'ont semblé trop compliqué à faire au moment ou j’ai fais le TP, je souhaitais alors voir si je ne pouvais pas revoir du cours, ou bien me lancer sur un petit projet.
+Ce TP consistait à remplir les fonctions pour implémenter une pile en C
 
-L’exercice 1 n’était pas nécessairement compliqué et j’ai personnellement trouvé la version récursive bien plus simple.
+Je n’ai rien fait d’exceptionnel pour faire la pile, j’ai suivis le TP et remplit les fonctions comme il me semble qu’elle devait être codée.
 
-L’exercice 4 était un peu compliqué à mettre en place, je n’avais pas réussi sur le coup, et c’est en faisant le cours d'algorithmique sur la recherche dichotomique que je suis revenus le terminer. J’avais tenté de le faire avec juste un size et comme je maîtrisais mal les tableaux, j’avais des erreur assez stupide. A ce moment il était clair que j’avais un soucis avec les tableaux, déjà avec leurs initialisation puis avec leurs utilisations
+J’ai cependant mieux compris comment fonctionnait une pile.
 
-Finalement, je n’ai pas pris le temps de revenir sur les exercices qui m'avaient posé problèmes, autre que le 4, mais vous le lirez par la suite que j’ai fais un peu plus pour ce C1.
-
-Donc en somme sur ce TP je suis un peu tombé sur un os, donc il fallait que je me rattrape autre part.
+> NB : Vous trouverez toutes les notions abordés dans le TP2 sur le [récapitulatif des notions](#récaputilatif-des-notions)
 
 ##### TP 5 :
 
-Le TP3 m’a servis également à reprendre mes bases, ceci dit, je n’ai pas fait tout les exercices, en effet, l'exercice 5 ne m'intéressais pas à faire car c'est un exercice que j'avais vu et revue en DUT et les deux autres m'ont semblé trop compliqué à faire au moment ou j’ai fais le TP, je souhaitais alors voir si je ne pouvais pas revoir du cours, ou bien me lancer sur un petit projet.
+Ce TP a le grand avantage de tout revoir et de tout utiliser sur les tableaux, et fait un très bon exercice pour mieux appréhender les tableaux.
 
-L’exercice 1 n’était pas nécessairement compliqué et j’ai personnellement trouvé la version récursive bien plus simple.
-
-L’exercice 4 était un peu compliqué à mettre en place, je n’avais pas réussi sur le coup, et c’est en faisant le cours d'algorithmique sur la recherche dichotomique que je suis revenus le terminer. J’avais tenté de le faire avec juste un size et comme je maîtrisais mal les tableaux, j’avais des erreur assez stupide. A ce moment il était clair que j’avais un soucis avec les tableaux, déjà avec leurs initialisation puis avec leurs utilisations
-
-Finalement, je n’ai pas pris le temps de revenir sur les exercices qui m'avaient posé problèmes, autre que le 4, mais vous le lirez par la suite que j’ai fais un peu plus pour ce C1.
-
-Donc en somme sur ce TP je suis un peu tombé sur un os, donc il fallait que je me rattrape autre part.
+> NB : Vous trouverez toutes les notions abordés dans le TP2 sur le [récapitulatif des notions](#récaputilatif-des-notions)
 
 ##### TP 6 :
 
-Le TP3 m’a servis également à reprendre mes bases, ceci dit, je n’ai pas fait tout les exercices, en effet, l'exercice 5 ne m'intéressais pas à faire car c'est un exercice que j'avais vu et revue en DUT et les deux autres m'ont semblé trop compliqué à faire au moment ou j’ai fais le TP, je souhaitais alors voir si je ne pouvais pas revoir du cours, ou bien me lancer sur un petit projet.
+Je n'ai pas eu le temps de terminer proprement le TP6, j'ai juste commencer l'exercice 1 qui est un préliminaire. Mais grâce à ça, j'ai pu constater que ce TP porte sur la récursivité.
 
-L’exercice 1 n’était pas nécessairement compliqué et j’ai personnellement trouvé la version récursive bien plus simple.
-
-L’exercice 4 était un peu compliqué à mettre en place, je n’avais pas réussi sur le coup, et c’est en faisant le cours d'algorithmique sur la recherche dichotomique que je suis revenus le terminer. J’avais tenté de le faire avec juste un size et comme je maîtrisais mal les tableaux, j’avais des erreur assez stupide. A ce moment il était clair que j’avais un soucis avec les tableaux, déjà avec leurs initialisation puis avec leurs utilisations
-
-Finalement, je n’ai pas pris le temps de revenir sur les exercices qui m'avaient posé problèmes, autre que le 4, mais vous le lirez par la suite que j’ai fais un peu plus pour ce C1.
-
-Donc en somme sur ce TP je suis un peu tombé sur un os, donc il fallait que je me rattrape autre part.
+> NB : Vous trouverez toutes les notions abordés dans le TP2 sur le [récapitulatif des notions](#récaputilatif-des-notions)
 
 #### Projets
 
 ##### Pong Game
 
+Le Pong est jeu vidéo dans lequel il faut controler des raquêttes afin de faire rebondir une balle et de marquer des points. J'ai choisir comme projet de créer ce jeu vidéo en langage C. 
+
+###### Objectifs
+
+<div style="text-align: justify">
+  L'objectif de ce jeu est d'avoir un jeu de pong fonctionnel utilisant le son pour le rebond des balles, un menu pour choisir la diffculté (vitesse de la balle) du jeu, de jouer contre une IA, un effet de trainée pour la balle et un score pour chaque joueur(Odinateur ou humain).
+</div>
+
+###### Production
+
+Finalement, j'ai créer un jeu qui fonctionne mais sans les fonctionnalités prévues à la base telles que:
+
+- le systeme de score
+- l'IA
+- le son lorsque la balle rebondit
+- l'effet de trainée de la balle
+
+###### Problèmes rencontrés
+
+<div style="text-align: justify">
+Ce projet a été un défi surtout pour la partie graphisme. Sacahnt qu'il n'y a pas de standard de librairie graphique en C, j'ai utilisé la librairie graphique SDL qui est très bas niveau et n'a pas beaucoup de fonctionnalité. J'ai fait en sorte qu'on puisse jouer au jeu juste avec la commande `make run` en étant sur windows ou linux. 
+Au début, j'ai eu beaucoup du mal faire fonctionner le graphisme du jeu, et à faire la liason des éxécutables de la SDL avec mes codes sources. J'ai pris environ une semaine pour résoudre ce problème et j'ai mieux commpris comment fonctionne le processus de liaison de tout programme, j'ai donc pris un peu d'avance sur les TPs du fil rouge accidentellement. 
+Ensuite, j'ai eu des problèmes au niveau de la logique du jeu. En effet, à la base, je voulais une balle ronde qui rebondit sur les raquette mais la SDL ne permettant pas de dessiner des cercles, j'ai dans un premier temps utiliser un algorithme de dessin de cercle à base des pixels. Mais avec cet algo, je n'avais pas exactement ce que je voulais comme cercle. J'ai donc crée ma propre fonction me permettant de dessiner le cercle grâce au professeur de TD, Mr Reiters (Merci monsieur :pray:) mais je n'ai pas eu le temps de le terminer. voici l'avancement actuelle de la fonction : 
+</div>
+
+```c
+/* Remarque du prof : Le prf m'a aider à créer cette fonction */
+int SDL_RenderFillCircle(SDL_Renderer * renderer, int x, int y, int radius) 
+{
+    int d, status, h;
+    status = 0;
+    h = radius * 2;
+    for (d = 0; d < radius; d++)
+    {
+        status += SDL_RenderDrawLine(renderer, x + d, y - h/2, x + d, y + h/2);
+        status += SDL_RenderDrawLine(renderer, x - d - 1, y - h/2, x - d - 1, y + h/2);
+        h--;
+    }
+    return status;
+}
+```
+
+> NB : Vous trouverez toutes les notions abordés dans le TP2 sur le [récapitulatif des notions](#récaputilatif-des-notions)
+
 ### Récaputilatif des notions
 
-| Notions                | TP2 | TP3 | TP4 | TP5 | TP6 |
-| ---------------------- | --- | --- | --- | --- | --- |
-| I/O                    | 1   | 1   | 1   | 1   | 1   |
-| Type                   | 1   | 1   | 1   | 1   | 1   |
-| Programme              | 1   | 1   | 1   | 1   | 1   |
-| Module                 |     |     | 1   |     | 1   |
-| Compilation            | 1   | 1   | 1   | 1   | 1   |
-| Récursion              | 1   | 1   |     | 1   | 2   |
-| Tableaux               |     | 1   |     | 1   | 1   |
-| Pointeurs              |     |     |     | 1   | 1   |
-| Structures             |     |     |     |     |     |
-| Allocation             |     |     |     |     |     |
-| Fichier                | 1   |     |     |     | 1   |
-| Bit à bit              |     |     |     |     |     |
-| Pointeurs de fonctions |     |     |     |     |     |
-| Bibliothèque           |     |     | 1   |     |     |
-| **Pts Total**          | 6   | 6   | 6   | 7   | 10  |
+| Notions                | TP2 | TP3 | TP4 | TP5 | TP6 | Pong |
+| ---------------------- | --- | --- | --- | --- | --- | ---- |
+| I/O                    | 1   | 1   | 1   | 1   | 1   |      |
+| Type                   | 1   | 1   | 1   | 1   | 1   | 2    |
+| Programme              | 1   | 1   | 1   | 1   | 1   | 3    |
+| Module                 |     |     | 1   |     | 1   | 2    |
+| Compilation            | 1   | 1   | 1   | 1   | 1   | 2    |
+| Récursion              | 1   | 1   |     | 1   | 2   |      |
+| Tableaux               |     | 1   |     | 1   | 1   |      |
+| Pointeurs              |     |     |     | 1   | 1   | 1    |
+| Structures             |     |     |     |     |     | 2    |
+| Allocation             |     |     |     |     |     |      |
+| Fichier                | 1   |     |     |     | 1   |      |
+| Bit à bit              |     |     |     |     |     |      |
+| Pointeurs de fonctions |     |     |     |     |     |      |
+| Bibliothèque           |     |     | 1   |     |     | 3    |
+| **Pts Total**          | 6   | 6   | 6   | 7   | 10  | 15   |
 
 ### Conclusion
 
-En conclusion, je suis très satisfait de ce semestre. Selon moi j’ai réussi à atteindre mes objectifs que je m'étais fixé en début de semestre et j’ai retrouvé les compétences que j’avais en DUT et au delà de ça j’ai pu véritablement apprendre de manière bien plus “théorique” le C. Je suis encore loin d’avoir un excellent niveau, mais j’ai à mon sens réussi à atteindre une certaine aisance qui me conforte dans l’idée que j’apprécie coder dans ce langage et que j’arrive à fournir des rendu qui sont un tant soit peu corrects.
+En conclusion, 
