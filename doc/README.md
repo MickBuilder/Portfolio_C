@@ -1,36 +1,36 @@
 # Portfolio_C
 
 - [Portfolio_C](#portfolio_c)
-- [Présentation](#présentation)
-- [Introduction](#introduction)
-- [Semestre 1 (Prog C1)](#semestre-1-prog-c1)
-  - [Objectifs de progression](#objectifs-de-progression)
-  - [Productions](#productions)
-    - [Travaux Pratiques](#travaux-pratiques)
-      - [TP2 :](#tp2-)
-      - [TP 3 :](#tp-3-)
-      - [TP 4 :](#tp-4-)
-      - [TP 5 :](#tp-5-)
-      - [TP 6 :](#tp-6-)
-    - [Projets](#projets)
-      - [Pong Game](#pong-game)
-  - [Récaputilatif des notions](#récaputilatif-des-notions)
-  - [Conclusion](#conclusion)
+  - [Présentation](#présentation)
+  - [Introduction](#introduction)
+  - [Semestre 1 (Prog C1)](#semestre-1-prog-c1)
+    - [Objectifs de progression](#objectifs-de-progression)
+    - [Productions](#productions)
+      - [Travaux Pratiques](#travaux-pratiques)
+        - [TP2 :](#tp2-)
+        - [TP 3 :](#tp-3-)
+        - [TP 4 :](#tp-4-)
+        - [TP 5 :](#tp-5-)
+        - [TP 6 :](#tp-6-)
+      - [Projets](#projets)
+        - [Pong Game](#pong-game)
+    - [Récaputilatif des notions](#récaputilatif-des-notions)
+    - [Conclusion](#conclusion)
 
 This respository contains my learning in C programming during the 1st year of engineer course at ESIPE MLV.
 
-# Présentation
+## Présentation
 
 Salut !  <img title="" src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" alt="Hello" width="50" data-align="inline">
 Bienvenu sur mon portfolio. 
 Je suis étudiant en 1er année du cursus ingénieur à l'ESIPE Marne-la-Vallée. 
 Je viens d'un DUT Informatique 
 
-# Introduction
+## Introduction
 
-# Semestre 1 (Prog C1)
+## Semestre 1 (Prog C1)
 
-## Objectifs de progression
+### Objectifs de progression
 
 | Notions          | Points total |
 | ---------------- | ------------ |
@@ -45,13 +45,11 @@ Je viens d'un DUT Informatique
 | Structures       | 2            |
 | Bibliothèque     | 1            |
 
-## Productions
+### Productions
 
----
+#### Travaux Pratiques
 
-### Travaux Pratiques
-
-#### TP2 :
+##### TP2 :
 
  Le TP2 a servi de rappel sur comment coder basiquement en C. J’ai pu revoir certaines bases que j’avais complètement oublié comme bêtement les paramètres du main et l’utilisation de argc et argv grâce à l’exercice 2.
 
@@ -81,7 +79,7 @@ Pour l’exercice 5, j’ai évidemment utilisé le man pour revoir l’utilisat
 | Bibliothèque           |     |     | 1   |     |     |
 | **Pts Total**          | 6   | 6   | 6   | 7   | 10  |
 
-#### TP 3 :
+##### TP 3 :
 
 Le TP3 m’a servis également à reprendre mes bases, ceci dit, je n’ai pas fait tout les exercices, en effet, l'exercice 5 ne m'intéressais pas à faire car c'est un exercice que j'avais vu et revue en DUT et les deux autres m'ont semblé trop compliqué à faire au moment ou j’ai fais le TP, je souhaitais alors voir si je ne pouvais pas revoir du cours, ou bien me lancer sur un petit projet.
 
@@ -93,7 +91,7 @@ Finalement, je n’ai pas pris le temps de revenir sur les exercices qui m'avaie
 
 Donc en somme sur ce TP je suis un peu tombé sur un os, donc il fallait que je me rattrape autre part.
 
-#### TP 4 :
+##### TP 4 :
 
 Le TP3 m’a servis également à reprendre mes bases, ceci dit, je n’ai pas fait tout les exercices, en effet, l'exercice 5 ne m'intéressais pas à faire car c'est un exercice que j'avais vu et revue en DUT et les deux autres m'ont semblé trop compliqué à faire au moment ou j’ai fais le TP, je souhaitais alors voir si je ne pouvais pas revoir du cours, ou bien me lancer sur un petit projet.
 
@@ -105,7 +103,7 @@ Finalement, je n’ai pas pris le temps de revenir sur les exercices qui m'avaie
 
 Donc en somme sur ce TP je suis un peu tombé sur un os, donc il fallait que je me rattrape autre part.
 
-#### TP 5 :
+##### TP 5 :
 
 Le TP3 m’a servis également à reprendre mes bases, ceci dit, je n’ai pas fait tout les exercices, en effet, l'exercice 5 ne m'intéressais pas à faire car c'est un exercice que j'avais vu et revue en DUT et les deux autres m'ont semblé trop compliqué à faire au moment ou j’ai fais le TP, je souhaitais alors voir si je ne pouvais pas revoir du cours, ou bien me lancer sur un petit projet.
 
@@ -117,7 +115,7 @@ Finalement, je n’ai pas pris le temps de revenir sur les exercices qui m'avaie
 
 Donc en somme sur ce TP je suis un peu tombé sur un os, donc il fallait que je me rattrape autre part.
 
-#### TP 6 :
+##### TP 6 :
 
 Le TP3 m’a servis également à reprendre mes bases, ceci dit, je n’ai pas fait tout les exercices, en effet, l'exercice 5 ne m'intéressais pas à faire car c'est un exercice que j'avais vu et revue en DUT et les deux autres m'ont semblé trop compliqué à faire au moment ou j’ai fais le TP, je souhaitais alors voir si je ne pouvais pas revoir du cours, ou bien me lancer sur un petit projet.
 
@@ -129,11 +127,11 @@ Finalement, je n’ai pas pris le temps de revenir sur les exercices qui m'avaie
 
 Donc en somme sur ce TP je suis un peu tombé sur un os, donc il fallait que je me rattrape autre part.
 
-### Projets
+#### Projets
 
-#### Pong Game
+##### Pong Game
 
-## Récaputilatif des notions
+### Récaputilatif des notions
 
 | Notions                | TP2 | TP3 | TP4 | TP5 | TP6 |
 | ---------------------- | --- | --- | --- | --- | --- |
@@ -153,6 +151,6 @@ Donc en somme sur ce TP je suis un peu tombé sur un os, donc il fallait que je 
 | Bibliothèque           |     |     | 1   |     |     |
 | **Pts Total**          | 6   | 6   | 6   | 7   | 10  |
 
-## Conclusion
+### Conclusion
 
 En conclusion, je suis très satisfait de ce semestre. Selon moi j’ai réussi à atteindre mes objectifs que je m'étais fixé en début de semestre et j’ai retrouvé les compétences que j’avais en DUT et au delà de ça j’ai pu véritablement apprendre de manière bien plus “théorique” le C. Je suis encore loin d’avoir un excellent niveau, mais j’ai à mon sens réussi à atteindre une certaine aisance qui me conforte dans l’idée que j’apprécie coder dans ce langage et que j’arrive à fournir des rendu qui sont un tant soit peu corrects.
