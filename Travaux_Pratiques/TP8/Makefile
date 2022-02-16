@@ -7,7 +7,7 @@ RM = rm -f
 SRC = ./src/
 OBJ = ./obj/
 
-OFILES = $(OBJ)stack_height.o
+OFILES = $(OBJ)syracuse_utils.o
 
 all: main.out
 
@@ -17,11 +17,11 @@ main.out: $(OFILES)
 $(OBJ):
 	mkdir $@
 
-$(OBJ)stack_height.o: $(SRC)stack_height.c $(OBJ)
+$(OBJ)syracuse_utils.o: $(SRC)syracuse_utils.c $(OBJ)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 run: all
-	./main.out
+	time ./main.out
 
 clean:
 	$(RM) -r $(OBJ)
