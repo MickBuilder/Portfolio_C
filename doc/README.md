@@ -157,3 +157,6 @@ int SDL_RenderFillCircle(SDL_Renderer * renderer, int x, int y, int radius)
 ### Conclusion
 
 En conclusion, ce semestre a été très enrichissant pour moi surtout au niveau de l'appronfondissement des notions dejà vues et de l'apprentissage de nouvalle notion telles que la liaison de programme, la fonctionnement d'une bibliothèque graphique. 
+
+## Semestre 2 
+<!-- Ajouter les remarques dans le rapport ... -->
