@@ -11,11 +11,18 @@ ifeq ($(OS),Windows_NT)
 	LDFLAGS = -L lib -lallegro -lallegro_primitives -lallegro_dialog -mwindows
 	EXTENSION=exe
 else
-	LDFLAGS = `pkg-config --libs --cflags allegro-5` 
+	# LDFLAGS = `pkg-config --libs --cflags allegro-5` 
+	# RM = rm -f
+	# MKDIR = mkdir -p
+	# EXTENSION=out
+	LDFLAGS = -L./lib/ -lallegro -lallegro_primitives -lallegro_dialog -Wl,-rpath,.
 	RM = rm -f
 	MKDIR = mkdir -p
 	EXTENSION=out
 endif
+
+# To fix my problem on linux platform, I use this link to set a env variable
+# Stack Over https://stackoverflow.com/questions/787684/set-ld-library-path-from-makefile
 
 CC = gcc
 CFLAGS 	= -ansi -Wall -pedantic -I include
@@ -55,7 +62,7 @@ $(test_objects): $(OBJ)/%.o : $(TESTDIR)/%.c $(OBJ)
 
 
 run: $(MAIN)
-	./$(MAIN)
+	LD_LIBRARY_PATH=${PWD}/lib ./$(MAIN)
 
 test: $(TEST)
 	./$(TEST)

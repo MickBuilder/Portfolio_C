@@ -1,6 +1,6 @@
 /* alplatf.h is generated from alplatf.h.cmake */
-#define ALLEGRO_MINGW32
-/* #undef ALLEGRO_UNIX */
+/*#define ALLEGRO_MINGW32*/
+#define ALLEGRO_UNIX
 /* #undef ALLEGRO_MSVC */
 /* #undef ALLEGRO_MACOSX */
 /* #undef ALLEGRO_BCC32 */
