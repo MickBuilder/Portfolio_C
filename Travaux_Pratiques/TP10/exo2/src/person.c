@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+
 #include "person.h"
 
 /**
@@ -44,7 +46,7 @@ int name_order(Person* person1, Person* person2) {
 
 void ordered_insert(List* list, Person* person, int (*order)(Person*, Person*)) {
     while ((*order)((*list)->next, person) < 0 && (*list)->next != NULL) {
-        list = (*list)->next;
+        list = &(*list)->next;
     }
 
     person->next = (*list)->next;
