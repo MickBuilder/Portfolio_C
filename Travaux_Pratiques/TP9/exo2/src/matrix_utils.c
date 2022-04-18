@@ -57,7 +57,7 @@ void fill_array(char** array, int lines, int columns) {
     int i, j;
     for (i = 0; i < lines; i++) {
         for (j = 0; j < columns; j++) {
-            array[i][j] = 'a' + i + j % 26;
+            array[i][j] = 'a' + (i + j) % 26;
         }
     }
 }
