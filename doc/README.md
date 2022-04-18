@@ -158,5 +158,74 @@ int SDL_RenderFillCircle(SDL_Renderer * renderer, int x, int y, int radius)
 
 En conclusion, ce semestre a été très enrichissant pour moi surtout au niveau de l'appronfondissement des notions dejà vues et de l'apprentissage de nouvalle notion telles que la liaison de programme, la fonctionnement d'une bibliothèque graphique. 
 
-## Semestre 2 
+## Semestre 2 (Prog C2)
+
 <!-- Ajouter les remarques dans le rapport ... -->
+
+J'aurais aimé écrit le rapport de ce semmest en anglais mais ça n'aurait pas de sens vu que je l'ai déjà commencé en français. Bon assez parler... Passons aux choses sérieuses. Ce semestre a été pour moi plus un approfondissement plus qu'un apprentissage. J'ai aussi profité pour mieux comprendre certaines notions (comme les piles, files, table de hashage, etc) qui étaient encore floues. 
+
+### Productions (du semestre)
+
+#### Travaux Pratiques (du fil rouge!!!)
+
+##### TP9
+
+En parlant, d'approfondissement dans mon introduction, je parlais specifiquement de ce TP. En effet, ce TP traite de l'allocation dynamiqe dans le langage C. J'avais déjà fait de l'allocation dynamique lors de mon DUT mais j'avais compris environ 60% de cette notion. Après avoir pratiqué ce merveilleux TP suivi des cours du professeur, je suis maintenant rassuré de travailler avec les pointeurs en C sans difficultés. Les exercices de ce TP sont graduels, en commençant du plus simple au moins simple. Voici un extrait de code permettant de créer un tableau de chaine de caractères. 
+
+```c
+char** create_two_dimension_array(int lines, int columns) {
+    int i;
+    char** array = (char**) malloc(sizeof(char*) * lines);
+    if (array == NULL) {
+        fprintf(stderr, "Error: malloc failed\n");
+        exit(0);
+    }
+
+    for (i = 0; i < columns; i++) {
+        array[i] = create_array(columns);
+    }
+
+    return array;
+}
+```
+
+##### TP10
+
+Ce TP est assez intéressant car il traite non seulement de l'allocation dynamique mais aussi des pointeurs de fonctions. Une notion que je ne maitisais pas totalement non plus. Grâce à ce TP, j'ai pu mieux comprendre ce concept. Mais le TP14 fait un approffondissement plus poussé sur les pointeurs de fonction, une pratique de plus (???). Un exercice est de faire une fonction qui prend deux arguments de n'importe quel type et d'échanger leur valeurs. Voici deux versions de cette fonction. 
+
+- Version dépendant
+  
+  ```c
+  void swap_mem_quick_version(void* z1, void* z2, size_t size)
+  {
+      void* tmp = malloc(size);
+      memcpy(tmp, z1, size);
+      memcpy(z1, z2, size);
+      memcpy(z2, tmp, size);
+      free(tmp);
+  }
+  ```
+
+- Version non dépendant 
+  
+  ```c
+  void swap_mem(void* z1, void* z2, size_t size) {
+      int i;
+      char tmp_data;
+      char *byte_data_1, *byte_data_2;
+  
+      if (z1 == NULL || z2 == NULL) {return;}
+      
+      byte_data_1 = (char*)z1;
+      byte_data_2 = (char*)z2;
+  
+      for (i = 0; i < size; i++)
+      {
+          tmp_data = byte_data_1[i];
+          byte_data_1[i] = byte_data_2[i];
+          byte_data_2[i] = tmp_data;
+      }
+  }
+  ```
+
+##### TP11

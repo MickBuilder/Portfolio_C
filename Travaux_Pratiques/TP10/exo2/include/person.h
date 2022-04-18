@@ -10,7 +10,7 @@ typedef struct cell
 } Person, *List;
 
 
-Person* create_cell(char* first_name, char* last_name, int age);
+Person* create_person(char* first_name, char* last_name, int age);
 
 int age_order(Person* cell1, Person* cell2);
 

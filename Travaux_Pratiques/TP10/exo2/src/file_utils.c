@@ -1,16 +1,12 @@
 #include "file_utils.h"
 
-void parse_file(const char *filename) {
-    FILE *file = fopen(filename, "r");
-    if (file == NULL) {
-        fprintf(stderr, "Error opening file\n");
-        return;
-    }
+void parse_file(FILE *file, List *list) {
+    char lastname[BUF_SIZE];
+    char firstname[BUF_SIZE];
+    int age;
 
-    char line[256];
-    while (fgets(line, sizeof(line), file) != NULL) {
-        printf("%s", line);
+    while (fscanf(file, "%s %s %d", lastname, firstname, &age) != EOF) {
+        Person *person = create_person(firstname, lastname, age);
+        ordered_insert(list, person, age_order);
     }
-
-    fclose(file);
 }
