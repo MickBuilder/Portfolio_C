@@ -215,7 +215,7 @@ Ce TP est assez intéressant car il traite non seulement de l'allocation dynamiq
       char *byte_data_1, *byte_data_2;
   
       if (z1 == NULL || z2 == NULL) {return;}
-      
+  
       byte_data_1 = (char*)z1;
       byte_data_2 = (char*)z2;
   

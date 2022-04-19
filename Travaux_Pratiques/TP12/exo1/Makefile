@@ -7,7 +7,7 @@ RM = rm -f
 SRC = ./src/
 OBJ = ./obj/
 
-OFILES = $(OBJ)main.o $(OBJ)utils_functions.o
+OFILES = $(OBJ)main.o $(OBJ)list_utilities.o
 
 all: main.out
 
@@ -20,7 +20,7 @@ $(OBJ):
 $(OBJ)main.o: $(SRC)main.c $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
-$(OBJ)utils_functions.o: $(SRC)utils_functions.c 
+$(OBJ)list_utilities.o: $(SRC)list_utilities.c 
 	$(CC) $(CFLAGS) -o $@ -c $<
 	
 run: all
