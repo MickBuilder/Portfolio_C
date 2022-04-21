@@ -37,11 +37,11 @@ void delete_node(Node *node) {
 }
 
 void delete_list(List list) {
-    Node *cur = list;
-    while (cur != NULL) {
-        Node *tmp = cur->next;
+    Node *tmp;
+    while (list != NULL) {
+        tmp = list;
+        list = list->next;
         delete_node(tmp);
-        cur = tmp;
     }
 }
 

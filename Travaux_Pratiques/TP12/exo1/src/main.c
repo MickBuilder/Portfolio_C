@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
 
     printf("%d different words found in Germinal\n", list_size(list));
 
-    /*delete_list(list);*/
+    delete_list(list); /* Valgrind doesn't works with many cell */
 
     return 0;
 }
