@@ -25,7 +25,7 @@ endif
 # Stack Over https://stackoverflow.com/questions/787684/set-ld-library-path-from-makefile
 
 CC = gcc
-CFLAGS 	= -ansi -Wall -pedantic -I include
+CFLAGS 	= -Wall -pedantic -I include
 RM = rm -f
 
 SRC 		= ./src
