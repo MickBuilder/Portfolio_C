@@ -1,6 +1,6 @@
 ###### VARIABLES #######
 CC = gcc
-CFLAGS = -ansi -Wall -pedantic -I include #-Werror
+CFLAGS = -ansi -Wall -pedantic -I include -g #-Werror
 
 RM = rm -f
 

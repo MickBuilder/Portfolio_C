@@ -50,8 +50,11 @@ int age_order(Person* person1, Person* person2) {
  * returns the result of the comparison between the two ages.
  */
 int name_order(Person* person1, Person* person2) {    
-    int name_comparison = strcmp(person1->last_name, person2->last_name);
-    return name_comparison == 0 ? age_order(person1, person2) : name_comparison;
+    int diff = strcmp(person1->last_name, person2->last_name);
+
+    diff == 0 && (diff = strcmp(person1->first_name, person2->first_name));
+
+    return diff == 0 ? person1->age - person2->age : diff;
 }
 
 void print_person(Person* person) {
@@ -67,9 +70,6 @@ void print_person(Person* person) {
  * @param order a function pointer to a function that takes two Person* and returns an int.
  */
 void ordered_insert(List* list, Person* person, int (*order)(Person*, Person*)) {
-    /*printf("In insertion func ↡↡↝↡\n");
-    print_person(person);*/
-
     if (*list == NULL) {
         *list = person;
     } else {
