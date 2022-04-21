@@ -15,21 +15,17 @@ Node* find_node(List list, char *word) {
     return tmp;
 }
 
-void insert_node_front(List list, char *word) {
-    /*printf("Create node: %s\n", word);*/
+void insert_node_front(List *list, char *word) {
     Node *new_node = NULL; 
     create_node(&new_node, word);
-    /*printf("Insert: %s\n", word);*/
-    new_node->next = list;
-    list = new_node;
+    new_node->next = *list;
+    *list = new_node;
 }
 
 int list_size(List list) {
     int size = 0;
-    printf("Enter here\n");
     while (list != NULL) {
         size++;
-        printf("+1\n");
         list = list->next;
     }
     return size;
@@ -41,8 +37,9 @@ void delete_node(Node *node) {
 }
 
 void delete_list(List list) {
+    Node *tmp;
     while (list != NULL) {
-        Node *tmp = list;
+        tmp = list;
         list = list->next;
         delete_node(tmp);
     }
@@ -53,8 +50,7 @@ void read_file(FILE *file, List *list) {
     while (fscanf(file, "%s", word) != -1) {
         Node *node = find_node(*list, word);
         if (node == NULL) {
-            /*printf("Not found: %s\n", word);*/
-            insert_node_front(*list, word);
+            insert_node_front(list, word);
         }
     }
 }
