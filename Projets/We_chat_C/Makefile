@@ -8,6 +8,7 @@ ifeq ($(OS),Windows_NT)
 	MKDIR = mkdir -p
   endif
 #   for the compiler error https://stackoverflow.com/questions/42849623/allegro-5-game-wont-compile-with-gcc
+	SETUP_ALLEGRO_PATH=
 	LDFLAGS = -L lib -lallegro -lallegro_primitives -lallegro_dialog -mwindows
 	EXTENSION=exe
 else
@@ -15,6 +16,7 @@ else
 	# RM = rm -f
 	# MKDIR = mkdir -p
 	# EXTENSION=out
+	SETUP_ALLEGRO_PATH=LD_LIBRARY_PATH=${PWD}/lib
 	LDFLAGS = -L./lib/ -lallegro -lallegro_primitives -lallegro_dialog -Wl,-rpath,.
 	RM = rm -f
 	MKDIR = mkdir -p
@@ -62,7 +64,7 @@ $(test_objects): $(OBJ)/%.o : $(TESTDIR)/%.c $(OBJ)
 
 
 run: $(MAIN)
-	LD_LIBRARY_PATH=${PWD}/lib ./$(MAIN)
+	$(SETUP_ALLEGRO_PATH) ./$(MAIN)
 
 test: $(TEST)
 	./$(TEST)

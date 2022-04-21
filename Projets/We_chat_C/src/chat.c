@@ -1,6 +1,3 @@
-#define _CRT_SECURE_NO_WARNINGS
-
-
 #include <stdio.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_native_dialog.h>
@@ -16,7 +13,7 @@ void error(const char* text) {
 }
 
 int main(int argc, char const *argv[]) {
-    ALLEGRO_DISPLAY *display;
+    ALLEGRO_DISPLAY *display = NULL;
     ALLEGRO_KEYBOARD_STATE key;
     ALLEGRO_MOUSE_STATE mouse;
 

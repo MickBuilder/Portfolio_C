@@ -55,7 +55,7 @@
 
 #define ALLEGRO_VERSION          5
 #define ALLEGRO_SUB_VERSION      2
-#define ALLEGRO_WIP_VERSION      8
+#define ALLEGRO_WIP_VERSION      7
 
 #ifdef ALLEGRO_UNSTABLE
    /* 1 << 31 represented as a signed int to match the arg type of
@@ -74,9 +74,9 @@
  * Note x.y.z (= x.y.z.0) has release number 1, and x.y.z.1 has release
  * number 2, just to confuse you.
  */
-#define ALLEGRO_RELEASE_NUMBER   0
+#define ALLEGRO_RELEASE_NUMBER   1
 
-#define ALLEGRO_VERSION_STR      "5.2.8 (GIT)"
+#define ALLEGRO_VERSION_STR      "5.2.7"
 #define ALLEGRO_DATE_STR         "2021"
 #define ALLEGRO_DATE             20210307    /* yyyymmdd */
 #define ALLEGRO_VERSION_INT \
