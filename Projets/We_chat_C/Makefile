@@ -9,7 +9,7 @@ ifeq ($(OS),Windows_NT)
   endif
 #   for the compiler error https://stackoverflow.com/questions/42849623/allegro-5-game-wont-compile-with-gcc
 	SETUP_ALLEGRO_PATH=
-	LDFLAGS = -L lib -lallegro -lallegro_primitives -lallegro_dialog -lallegro_font -lallegro_ttf -lallegro_image -mwindows
+	LDFLAGS = -L lib -lallegro -lallegro_primitives -lallegro_dialog -lallegro_font -lallegro_ttf -lallegro_image 
 	EXTENSION=exe
 else
 	# LDFLAGS = `pkg-config --libs --cflags allegro-5` 
