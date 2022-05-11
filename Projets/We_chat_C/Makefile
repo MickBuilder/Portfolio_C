@@ -17,7 +17,7 @@ else
 	# MKDIR = mkdir -p
 	# EXTENSION=out
 	SETUP_ALLEGRO_PATH=LD_LIBRARY_PATH=${PWD}/lib
-	LDFLAGS = -L./lib/ -lallegro -lallegro_primitives -lallegro_dialog -Wl,-rpath,.
+	LDFLAGS = -L./lib/ -lallegro -lallegro_primitives -lallegro_dialog -lallegro_font -lallegro_ttf -lallegro_image -Wl,-rpath,.
 	RM = rm -f
 	MKDIR = mkdir -p
 	EXTENSION=out
