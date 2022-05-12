@@ -76,3 +76,6 @@
 
 # Directory
 obj/
+
+# Allegro libray folder
+allegro5/
