@@ -26,5 +26,13 @@ typedef struct sockaddr_in SOCKADDR_IN
 
 #define PORT 9999
 #define HOSTNAME "bananabox.ddns.net"
+#define BUFFER_SIZE 1024
+
+static void init();
+static void end();
+static int init_connection(const char *hostname);
+static void end_connection(int socket_fd);
+static void send_to_server(int socket_fd, const char *message);
+static int receive_from_server(int socket_fd, char *buffer);
 
 #endif /* */
