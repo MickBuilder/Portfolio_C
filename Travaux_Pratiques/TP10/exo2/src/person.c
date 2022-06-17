@@ -52,7 +52,7 @@ int age_order(Person* person1, Person* person2) {
 int name_order(Person* person1, Person* person2) {    
     int diff = strcmp(person1->last_name, person2->last_name);
 
-    diff == 0 && (diff = strcmp(person1->first_name, person2->first_name));
+    diff == 0 && (diff = strcmp(person1->first_name, person2->first_name)); /* This is an obscure C. it replace a if statement */
 
     return diff == 0 ? person1->age - person2->age : diff;
 }

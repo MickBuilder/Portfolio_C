@@ -194,38 +194,50 @@ char** create_two_dimension_array(int lines, int columns) {
 Ce TP est assez intéressant car il traite non seulement de l'allocation dynamique mais aussi des pointeurs de fonctions. Une notion que je ne maitisais pas totalement non plus. Grâce à ce TP, j'ai pu mieux comprendre ce concept. Mais le TP14 fait un approffondissement plus poussé sur les pointeurs de fonction, une pratique de plus (???). Un exercice est de faire une fonction qui prend deux arguments de n'importe quel type et d'échanger leur valeurs. Voici deux versions de cette fonction. 
 
 - Version dépendant
-  
-  ```c
-  void swap_mem_quick_version(void* z1, void* z2, size_t size)
-  {
-      void* tmp = malloc(size);
-      memcpy(tmp, z1, size);
-      memcpy(z1, z2, size);
-      memcpy(z2, tmp, size);
-      free(tmp);
-  }
-  ```
+
+    ```c
+    void swap_mem_quick_version(void* z1, void* z2, size_t size)
+    {
+        void* tmp = malloc(size);
+        memcpy(tmp, z1, size);
+        memcpy(z1, z2, size);
+        memcpy(z2, tmp, size);
+        free(tmp);
+    }
+    ```
 
 - Version non dépendant 
   
-  ```c
-  void swap_mem(void* z1, void* z2, size_t size) {
-      int i;
-      char tmp_data;
-      char *byte_data_1, *byte_data_2;
-  
-      if (z1 == NULL || z2 == NULL) {return;}
-  
-      byte_data_1 = (char*)z1;
-      byte_data_2 = (char*)z2;
-  
-      for (i = 0; i < size; i++)
-      {
-          tmp_data = byte_data_1[i];
-          byte_data_1[i] = byte_data_2[i];
-          byte_data_2[i] = tmp_data;
-      }
-  }
-  ```
+    ```c
+    void swap_mem(void* z1, void* z2, size_t size) {
+        int i;
+        char tmp_data;
+        char *byte_data_1, *byte_data_2;
+    
+        if (z1 == NULL || z2 == NULL) {return;}
+    
+        byte_data_1 = (char*)z1;
+        byte_data_2 = (char*)z2;
+    
+        for (i = 0; i < size; i++)
+        {
+            tmp_data = byte_data_1[i];
+            byte_data_1[i] = byte_data_2[i];
+            byte_data_2[i] = tmp_data;
+        }
+    }
+    ```
 
 ##### TP11
+
+##### TP12
+
+##### TP14
+Comme le titre de ce TP le nomme, ce TP traite des pointeurs de fonction 
+mais de manière avancée. L'objectif est d'utiliser une fonction de la bibliothèque `<ftw.h>` 
+
+#### Projets
+
+##### We_chat_C
+
+Le but de ce projet est de créer une interface graphique pour un client tcp. Pour ce faire, j'ai utilisé la bibliothèque `allegro-5` en raison des fonctions utilitaire déjà fait. Le projet a plutôt bien commencé. 
