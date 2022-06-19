@@ -309,11 +309,140 @@ Le plus important, c'est que le principe des tables de hashage a été compris.
 
 ##### TP14
 
-Comme le titre de ce TP le nomme, ce TP traite des pointeurs de fonction 
-mais de manière avancée. L'objectif est d'utiliser une fonction de la bibliothèque `<ftw.h>` 
+Comme spoiler dans le TP10, ce TP traite uniquement des pointeurs de fonctions. Il contient un unique exercice qui consiste à utilisé une fonction de la bibliothèque `<ftw.h>` qui prend en paramètre un pointeur de fonction.  La fonction ftw de la bibliothèque <ftw.h> permet de se promener dans l'arborescence des fichiers à partir d'un répertoire racine précisé dans `dirpath` . Le but ici est de récupérer la taille des fichiers pendant le parcours et d'afficher les 10 plus fichiers rencontrés.  La signature du pointeur de fonction est sous cette forme : 
+
+```c
+int fn(const char* file_path, const struct stat *sb, int type_flag);
+```
+
+Lorsque j'ai commencé le TP, j'avais en tête de faire un code propre sans utilisation de variable globale. Pour cela, j'ai recours au variable static dans mon pointeur de fonction. Tout se passait bien jusqu'au moment j'ai eu besoin d'identifier la fin de ma boucle (sinon, j'aurais une boucle infini). A ce moment là, j'ai été containt d'utiliser une variable static global, ce qui m'a déplu. De ce fait, j'ai compris qu'on ne peut pas éviter les variables globales dans tous les cas. Finalement, j'ai un pointeur de fonction resemblant à ca :
+
+```c
+int simple_ls(const char* file_path, const struct stat *sb, int type_flag) {
+    static int is_init = 0;
+    static FileInfo top_file[NB_TOP_LARGER_FILE + 1];
+
+    FileInfo current_file;
+    int j;
+
+    if(!is_init) {
+        init_file(top_file, NB_TOP_LARGER_FILE + 1);
+        top_file_ref = top_file;
+        is_init = 1;
+    }
+
+    current_file = create_file(file_path, sb->st_size);
+
+    if(type_flag == FTW_F) {
+        j = NB_TOP_LARGER_FILE;
+        top_file[NB_TOP_LARGER_FILE] = current_file;
+
+        while (j > 0 && (top_file[j].size > top_file[j-1].size)) {
+            FileInfo tmp = top_file[j-1];
+            top_file[j-1] = top_file[j];
+            top_file[j] = tmp;
+
+            j--;
+        }
+    }
+
+    return 0;
+}  
+```
+
+
 
 #### Projets
 
 ##### We_chat_C
 
-Le but de ce projet est de créer une interface graphique pour un client tcp. Pour ce faire, j'ai utilisé la bibliothèque `allegro-5` en raison des fonctions utilitaire déjà fait. Le projet a plutôt bien commencé. 
+Le but de ce projet est de créer une interface graphique pour un client tcp. Je me suis basé sur le projet d'un camarade de classe. En effet, ce projet était la création d'un serveur tcp en C. Du coup, j'ai décidé de faire la partie client mais aussi lui attribuer une interface graphique. Pour ce fait, j'ai utilisé la bibliothèque `allegro-5` en raison des fonctions utilitaire déjà fait. Le projet a plutôt bien commencé. 
+
+
+
+###### Réalisations
+
+- **Client TCP**
+  
+  J'ai commencé déjà par la partie client tcp, qui a été très rapide vu que j'avais déjà fait de prog système en DUT. La seule difficulté que j'ai rencontré était de rendre le client tcp cross-platform sur ***Window*** et ***Linux***. Puisque l'api système n'est pas le même sur Windows que sur Linux, il fallait utiliser des fonctions différentes en fonction de la platforme. Mais j'ai pu réseoudre ce problème, et j'ai deux fonctions cross-platform qui envoie et reçoive des messages tcp.
+  
+  ```c
+  void send_recv(int i, int sockfd)
+  {
+  	char send_buf[BUFSIZE];
+  	char recv_buf[BUFSIZE];
+  	int nbyte_recvd;
+  	
+  	if (i == 0){
+  		fgets(send_buf, BUFSIZE, stdin);
+  		if (strcmp(send_buf , "quit\n") == 0) {
+  			exit(0);
+  		}else
+  			send(sockfd, send_buf, strlen(send_buf), 0);
+  	}else {
+  		nbyte_recvd = recv(sockfd, recv_buf, BUFSIZE, 0);
+  		recv_buf[nbyte_recvd] = ' ';
+  		printf("%s\n" , recv_buf);
+  		fflush(stdout);
+  	}
+  }
+  ```
+
+
+
+
+- **Client Graphique**
+  
+  C'est la partie qui m'a fait le plus sué sur ce projet. Etant donné que je n'ai pas encore beaucoup d'expéricence en graphique, j'ai perdu les 3/4 de temps sur cette partie. Tout a bien commencé par l'affichage de la fenêtre. Malgré l'avancé de la bibliothèque `allegro-5`, il n'y a pas de fonction pour afficher et récupérer le message d'un champ de texte. C'est la seule partie qui m'a bloqué sur ce projet. Du j'ai commencé à créer ce widget moi-même à base des fonction de base. Et j'ai n'ai pas malheureusement le temps de le finir. Je regrette maintenant de ne pas avoir utilisé la `libMLV` depuis le début pour ce projet. Même si j'aurai un affichage pas trop jolie, le projet serait quand même fonctionnelle.
+  
+  Pour gérer les évenements sur le champs de texte, j'ai une fonction :
+  
+  ```c
+  void input_on_key_down(ALLEGRO_KEYBOARD_EVENT *keyboard_event, Input *input) {
+      int cursor_position = al_ustr_length(input->text);
+      if (input->active) {
+          switch (keyboard_event->keycode) {
+              case ALLEGRO_KEY_LEFT:
+                  al_ustr_prev(input->text, &cursor_position);
+                  printf("left\n");
+                  break;
+              case ALLEGRO_KEY_RIGHT:
+                  al_ustr_next(input->text, &cursor_position);
+                  break;
+              case ALLEGRO_KEY_HOME:
+                  cursor_position = 0;
+                  break;
+              case ALLEGRO_KEY_END:
+                  cursor_position = al_ustr_length(input->text);
+                  break;
+              case ALLEGRO_KEY_BACKSPACE:
+                  if(al_ustr_prev(input->text, &cursor_position))
+                      al_ustr_remove_chr(input->text, cursor_position);
+                  break;
+              case ALLEGRO_KEY_DELETE:
+                  al_ustr_remove_chr(input->text, cursor_position);
+                  break;
+              case ALLEGRO_KEY_ENTER:
+                  input->active = false;
+                  break;
+              default:
+                  if (keyboard_event->unichar >= 32) {
+                      al_ustr_insert_chr(input->text, cursor_position, keyboard_event->unichar);
+                      //al_ustr_next(input->text, &cursor_position);
+                      cursor_position += al_utf8_width(keyboard_event->unichar);
+                  }
+                  break;
+          }
+  
+          draw_input(input);
+      }
+  }
+  ```
+
+### Conclusion
+
+En somme, ce semestre était plus intéressant que le 1er en raison des approfondissements des notions pas encore claire mais aussi des problèmes rencontré durant le projet de client graphique. Même si je n'ai pu terminé ce projet, je comprends mieux comment fonctionnent les widgets par défaut inclus dans les bibliothèques avancée de graphisme. En plus, je me suis plus concentré sur le coté `code propre` plutôt que la technique ce semestre. J'ai aussi fait un tour rapide sur le platon pour mettre en examen mes connaisance. J'ai fait quelques exercices de la partie `bit à bit` sur platon mais sur la session d'Adrien COSTANDI. 
+
+
+
+Pensez à vous hydrater :) .
