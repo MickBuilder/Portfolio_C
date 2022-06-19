@@ -162,7 +162,9 @@ En conclusion, ce semestre a été très enrichissant pour moi surtout au niveau
 
 <!-- Ajouter les remarques dans le rapport ... -->
 
-J'aurais aimé écrit le rapport de ce semmest en anglais mais ça n'aurait pas de sens vu que je l'ai déjà commencé en français. Bon assez parler... Passons aux choses sérieuses. Ce semestre a été pour moi plus un approfondissement plus qu'un apprentissage. J'ai aussi profité pour mieux comprendre certaines notions (comme les piles, files, table de hashage, etc) qui étaient encore floues. 
+> > > Remarque :  J'aurais aimé écrit le rapport de ce semestre en anglais mais ça n'aurait pas de sens vu que je l'ai déjà commencé en français. Bon assez parlé... Passons aux choses sérieuses. 
+
+Ce semestre a été pour moi plus un approfondissement plus qu'un apprentissage. J'ai aussi profité pour mieux comprendre certaines notions (comme les piles, files, table de hashage, etc) qui étaient encore floues. 
 
 ### Productions (du semestre)
 
@@ -170,7 +172,7 @@ J'aurais aimé écrit le rapport de ce semmest en anglais mais ça n'aurait pas 
 
 ##### TP9
 
-En parlant, d'approfondissement dans mon introduction, je parlais specifiquement de ce TP. En effet, ce TP traite de l'allocation dynamiqe dans le langage C. J'avais déjà fait de l'allocation dynamique lors de mon DUT mais j'avais compris environ 60% de cette notion. Après avoir pratiqué ce merveilleux TP suivi des cours du professeur, je suis maintenant rassuré de travailler avec les pointeurs en C sans difficultés. Les exercices de ce TP sont graduels, en commençant du plus simple au moins simple. Voici un extrait de code permettant de créer un tableau de chaine de caractères. 
+En parlant, d'approfondissement dans mon introduction, je parlais specifiquement de ce TP. En effet, ce TP traite de l'allocation dynamiqe dans le langage C. J'avais déjà fait de l'allocation dynamique lors de mon DUT mais j'avais compris environ 60% de cette notion. Après avoir pratiqué ce merveilleux TP suivi des cours du professeur, je suis maintenant rassuré de travailler avec les pointeurs en C sans difficultés. Les exercices de ce TP sont graduels, en commençant du plus simple au plus compliqué. Voici un extrait de code permettant de créer un tableau de chaine de caractères. 
 
 ```c
 char** create_two_dimension_array(int lines, int columns) {
@@ -191,48 +193,122 @@ char** create_two_dimension_array(int lines, int columns) {
 
 ##### TP10
 
-Ce TP est assez intéressant car il traite non seulement de l'allocation dynamique mais aussi des pointeurs de fonctions. Une notion que je ne maitisais pas totalement non plus. Grâce à ce TP, j'ai pu mieux comprendre ce concept. Mais le TP14 fait un approffondissement plus poussé sur les pointeurs de fonction, une pratique de plus (???). Un exercice est de faire une fonction qui prend deux arguments de n'importe quel type et d'échanger leur valeurs. Voici deux versions de cette fonction. 
+Ce TP est assez intéressant car il traite non seulement de l'allocation dynamique mais aussi des pointeurs de fonctions. Une notion que je ne maitisais pas totalement non plus. Grâce à ce TP, j'ai pu mieux comprendre ce concept. Mais le TP14 fait un approffondissement plus poussé sur les pointeurs de fonction. Un des exercices est de faire une fonction qui prend deux arguments de n'importe quel type et d'échanger leur valeurs. Voici deux versions de cette fonction. 
 
 - Version dépendant
-
-    ```c
-    void swap_mem_quick_version(void* z1, void* z2, size_t size)
-    {
-        void* tmp = malloc(size);
-        memcpy(tmp, z1, size);
-        memcpy(z1, z2, size);
-        memcpy(z2, tmp, size);
-        free(tmp);
-    }
-    ```
+  
+  ```c
+  void swap_mem_quick_version(void* z1, void* z2, size_t size)
+  {
+      void* tmp = malloc(size);
+      memcpy(tmp, z1, size);
+      memcpy(z1, z2, size);
+      memcpy(z2, tmp, size);
+      free(tmp);
+  }
+  ```
 
 - Version non dépendant 
   
-    ```c
-    void swap_mem(void* z1, void* z2, size_t size) {
-        int i;
-        char tmp_data;
-        char *byte_data_1, *byte_data_2;
-    
-        if (z1 == NULL || z2 == NULL) {return;}
-    
-        byte_data_1 = (char*)z1;
-        byte_data_2 = (char*)z2;
-    
-        for (i = 0; i < size; i++)
-        {
-            tmp_data = byte_data_1[i];
-            byte_data_1[i] = byte_data_2[i];
-            byte_data_2[i] = tmp_data;
-        }
-    }
-    ```
+  ```c
+  void swap_mem(void* z1, void* z2, size_t size) {
+      int i;
+      char tmp_data;
+      char *byte_data_1, *byte_data_2;
+  
+      if (z1 == NULL || z2 == NULL) {return;}
+  
+      byte_data_1 = (char*)z1;
+      byte_data_2 = (char*)z2;
+  
+      for (i = 0; i < size; i++)
+      {
+          tmp_data = byte_data_1[i];
+          byte_data_1[i] = byte_data_2[i];
+          byte_data_2[i] = tmp_data;
+      }
+  }
+  ```
 
-##### TP11
+L'exercice du TP traitant les pointeurs de fonctions consistait à parser des lignes d'un fichier en une structure `Cell` . Ensuite, cette structure est utilisé pour faire une liste chainée de `Cell`.  Le but final de l'exercice est de trier cette liste en fonction de l'age ou du nom de `Cell`.  Comme le sujet le décrire ci-dessous, on voudrait trier de deux manière différentes tout en généralisant le code : 
+
+```
+On voudra trier selon deux manières : tout d’abord par l’âge puis alphabétiquement pour
+les personnes ayant le même âge. On essayera ensuite de trier alphabétiquement puis par
+âge pour les personnes ayant les mêmes nom et prénom
+```
+
+Pour cela, la fonction de trie devra prendre, un pointeur de fontion d'ordre en paramètre. La signature de ce pointeur de fonction est : 
+
+```c
+int order_func(Cell*, Cell*)
+```
+
+- Donc pour trier par age, mon pointeur de fonction ressemble à ça :
+  
+  ```c
+  /**
+   * If the age of the first person is equal to the age of the second person, then the function returns
+   * the result of the name_order function, otherwise it returns the difference between the age of the
+   * first person and the age of the second person
+   * 
+   * @param person1 The first person to compare
+   * @param person2 The second person to compare.
+   * 
+   * @return the result of the comparison between the two persons.
+   */
+  int age_order(Person* person1, Person* person2) {
+      int age_comparison = person1->age - person2->age;
+      return age_comparison == 0 ? name_order(person1, person2) : age_comparison;
+  }
+  ```
+
+- Pour le trie par nom, il est sous cette forme : 
+  
+  ```c
+  /**
+   * If the last names are the same, then compare the ages, otherwise compare the last names
+   * 
+   * @param person1 A pointer to the first person to compare.
+   * @param person2 The second person to compare.
+   * 
+   * @return the result of the comparison between the two names. If the names are equal, the function
+   * returns the result of the comparison between the two ages.
+   */
+  int name_order(Person* person1, Person* person2) {    
+      int diff = strcmp(person1->last_name, person2->last_name);
+  
+      diff == 0 && (diff = strcmp(person1->first_name, person2->first_name)); /* This is an obscure C. it replace a if statement */
+  
+      return diff == 0 ? person1->age - person2->age : diff;
+  }
+  ```
 
 ##### TP12
 
+L'objectif de ce TP était du TP était de voir les grandes différences entre listes chaînée et les tables de hashages. Cependant, je n'ai pas réalisé la partie principale de ce TP car on avait déjà fait un exercice similaire en `Algo` qui traitait des tables de hashages.
+
+Dans cet exercice, j'avais représenté ma table de hashage sous cette forme :
+
+```c
+typedef struct _link {
+    char *word;
+    olink *occurrences; /* liste des occurrences */
+    struct _link *next;
+} link;
+
+
+typedef struct _table {
+    link **bucket;
+    int M; /* nombre de seaux */
+    int size; /* nombre de mots dans la table */
+} table;
+```
+
+Le plus important, c'est que le principe des tables de hashage a été compris. 
+
 ##### TP14
+
 Comme le titre de ce TP le nomme, ce TP traite des pointeurs de fonction 
 mais de manière avancée. L'objectif est d'utiliser une fonction de la bibliothèque `<ftw.h>` 
 
